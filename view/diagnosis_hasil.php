@@ -182,8 +182,20 @@ if (isset($_SESSION['status']) != 'login') {
                                     // count gejala
                                     $count = count($_POST['gejala']);
                                     if($count < 3){
-                                        echo "<script>alert('Pilih minimal 3 gejala');</script>";
-                                        echo "<script>window.history.back();</script>";
+                                        // echo "<script>alert('Pilih minimal 3 gejala');</script>";
+                                        // echo "<script>window.history.back();</script>";
+                                        echo "
+                                        <script>
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Pilih minimal 3 gejala',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        }).then((result) => {
+                                            window.history.back();
+                                        });
+                                        </script>
+                                        ";
                                         return false;
                                     }
                                     $kode_gejala = $_POST['gejala'];

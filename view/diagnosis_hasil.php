@@ -179,7 +179,16 @@ if (isset($_SESSION['status']) != 'login') {
                                     </center>
                                     <?php
                                     require_once '../class/class_diagnosis.php';
-                                    $diagnosis->tampilPenyakit();
+                                    // count gejala
+                                    $count = count($_POST['gejala']);
+                                    if($count < 3){
+                                        echo "<script>alert('Pilih minimal 3 gejala');</script>";
+                                        echo "<script>window.history.back();</script>";
+                                        return false;
+                                    }
+                                    $kode_gejala = $_POST['gejala'];
+                                    $kode_penyakit = $_POST['kode_penyakit'];
+                                    $diagnosis->hasilDiagnosis($kode_gejala, $kode_penyakit);
                                     ?>
                                 </div>
                             </div>
@@ -247,11 +256,6 @@ if (isset($_SESSION['status']) != 'login') {
         }
     </script>
     <script src="../template/js/logout.js"></script>
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-    </script>
 </body>
 
 </html>

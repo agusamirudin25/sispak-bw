@@ -346,10 +346,8 @@ if(isset($_SESSION['status']) != 'login'){
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-
-
                     <li class="nav-item">
-                        <a class="nav-link" href="#ui-basic">
+                        <a class="nav-link" href="../view/basis_pengetahuan.php">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Basis Pengetahuan</span>
                         </a>

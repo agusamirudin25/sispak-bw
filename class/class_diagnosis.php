@@ -55,7 +55,7 @@ class diagnosis extends koneksi
             </script>";
             return false;
             }
-            $this->penyakit($kode_gejala, $kode_penyakit);
+            $this->hasilDiagnosis($kode_gejala, $kode_penyakit);
         }
         ?>
         <form action="" method="post">
@@ -89,7 +89,7 @@ class diagnosis extends koneksi
 <?php
     }
 
-    function penyakit($kode_gejala, $kode_penyakit)
+    public function hasilDiagnosis($kode_gejala, $kode_penyakit)
     {
         // show gejala
         $query_gejala = "SELECT * FROM tb_gejala WHERE kode_gejala IN ('" . implode("','", $kode_gejala) . "')";

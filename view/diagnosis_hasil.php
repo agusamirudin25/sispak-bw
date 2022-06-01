@@ -27,6 +27,28 @@ if (isset($_SESSION['status']) != 'login') {
     <!-- endinject -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="../template/images/favicon.png" />
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #section-to-print,
+            #section-to-print * {
+                visibility: visible;
+            }
+
+            #section-to-print {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            #btn-cetak, #btn-back{
+                visibility: hidden !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -170,7 +192,7 @@ if (isset($_SESSION['status']) != 'login') {
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="row">
+                    <div class="row" id="section-to-print">
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
@@ -181,9 +203,7 @@ if (isset($_SESSION['status']) != 'login') {
                                     require_once '../class/class_diagnosis.php';
                                     // count gejala
                                     $count = count($_POST['gejala']);
-                                    if($count < 3){
-                                        // echo "<script>alert('Pilih minimal 3 gejala');</script>";
-                                        // echo "<script>window.history.back();</script>";
+                                    if ($count < 3) {
                                         echo "
                                         <script>
                                         Swal.fire({
@@ -265,6 +285,9 @@ if (isset($_SESSION['status']) != 'login') {
                     tr[i].style.display = "none";
                 }
             }
+        }
+        const cetakHasil = () => {
+            window.print();
         }
     </script>
     <script src="../template/js/logout.js"></script>

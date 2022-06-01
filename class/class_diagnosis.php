@@ -64,8 +64,9 @@ class diagnosis extends koneksi
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">Hasil Diagnosa</h3>
+                        <button class="btn btn-primary" id="btn-cetak" onclick="cetakHasil()">Cetak</button>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -96,7 +97,7 @@ class diagnosis extends koneksi
                                 </div>
                             </div>
                             <div class="col-md-12 mt-3">
-                                <a href="../view/diagnosis.php" class="btn btn-warning text-white">Kembali</a>
+                                <a href="../view/diagnosis.php" class="btn btn-warning text-white" id="btn-back">Kembali</a>
                             </div>
                         </div>
                     </div>
@@ -147,7 +148,7 @@ class diagnosis extends koneksi
                     </div>
                 </div>
             </div>
-<?php
+        <?php
         endif;
     }
 }

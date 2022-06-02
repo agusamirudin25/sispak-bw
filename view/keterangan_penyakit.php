@@ -54,54 +54,6 @@ if (isset($_SESSION['status']) != 'login') {
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                            <i class="icon-bell mx-0"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="ti-info-alt mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="ti-settings mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Private message
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="ti-user mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        2 days ago
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                             <img src="../template/images/faces/face28.jpg" alt="profile" />
@@ -142,12 +94,25 @@ if (isset($_SESSION['status']) != 'login') {
                             <div class="card">
                                 <div class="card-body">
                                     <center>
-                                        <h4 class="card-title">Diagnosa Penyakit</h4>
+                                        <h4 class="card-title">Data Penyakit</h4>
                                     </center>
                                     <?php
-                                    require_once '../class/class_diagnosis.php';
-                                    $diagnosis->tampilPenyakit();
-                                    ?>
+                                    require_once '../class/koneksi.php';
+                                    $query = "SELECT * FROM tb_penyakit ORDER by kode_penyakit desc";
+                                    $penyakit = $con->prepare($query);
+                                    $penyakit->execute(); ?>
+                                    <div class="row">
+                                        <?php while ($row = $penyakit->fetch(PDO::FETCH_ASSOC)) : ?>
+                                            <div class="col-md-6">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"><?= $row['nama_penyakit'] ?></h5>
+                                                        <p class="card-text"><?= $row['pengertian'] ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endwhile; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

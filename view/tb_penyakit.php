@@ -428,9 +428,10 @@ if(isset($_SESSION['status']) != 'login'){
                                                             if(isset($_POST['simpan'])){
                                                                 $kode_penyakit = $_POST['kode_penyakit'];
                                                                 $nama_penyakit = $_POST['nama_penyakit'];
+                                                                $keterangan_penyakit = $_POST['keterangan_penyakit'];
                                                                 $solusi = $_POST['solusi'];
 
-                                                                $penyakit->Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi);
+                                                                $penyakit->Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit);
                                                             }
                                                             ?>
                                                     <?php
@@ -474,6 +475,11 @@ if(isset($_SESSION['status']) != 'login'){
                                                             <input type="text" class="form-control" name="nama_penyakit"
                                                                 id="exampleInputPassword1"
                                                                 placeholder="Masukan Nama Penyakit" required>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Keterangan Penyakit</label>
+                                                            <textarea class="form-control" required name="keterangan_penyakit" id="keterangan_penyakit" cols="30" rows="4" placeholder="Masukan Keterangan Penyakit"></textarea>
                                                         </div>
 
                                                         <div class="form-group">

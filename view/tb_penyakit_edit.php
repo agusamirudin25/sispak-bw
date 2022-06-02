@@ -473,8 +473,9 @@ if(isset($_POST['simpan'])){
   $kode_penyakit = $_POST['kode_penyakit'];
     $nama_penyakit = $_POST['nama_penyakit'];
     $solusi = $_POST['solusi'];
+    $keterangan_penyakit = $_POST['keterangan_penyakit'];
 
-    $penyakit->Editpenyakit($id, $kode_penyakit, $nama_penyakit,$solusi);
+    $penyakit->Editpenyakit($id, $kode_penyakit, $nama_penyakit,$solusi, $keterangan_penyakit);
     echo "<script> alert('Data Berhasil Diubah');
     window.location='tb_penyakit.php';
     </script>";
@@ -506,6 +507,10 @@ if(isset($_POST['simpan'])){
                                                             value="<?php echo $row['nama_penyakit']?>"
                                                             name="nama_penyakit">
                                                     </div>
+                                                    <div class="form-group">
+                                                            <label for="exampleInputPassword1">Keterangan Penyakit</label>
+                                                            <textarea class="form-control" required name="keterangan_penyakit" id="keterangan_penyakit" cols="30" rows="4" placeholder="Masukan Keterangan Penyakit"><?php echo $row['pengertian']?></textarea>
+                                                        </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Solusi</label>
                                                         <input type="text" class="form-control" id="exampleInputEmail1"

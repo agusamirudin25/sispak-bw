@@ -7,13 +7,14 @@ class penyakit extends koneksi
 {
 
     //Tambah Penyakit
-    public function Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi)
+    public function Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit)
     {
         try {
-            $insertpenyakit = $this->db->prepare("INSERT INTO tb_penyakit(kode_penyakit,nama_penyakit,solusi) VALUES(:kode_penyakit,:nama_penyakit,:solusi)");
+            $insertpenyakit = $this->db->prepare("INSERT INTO tb_penyakit(kode_penyakit,nama_penyakit,solusi, pengertian) VALUES(:kode_penyakit,:nama_penyakit,:solusi, :keterangan_penyakit)");
 
             $insertpenyakit->bindParam(":kode_penyakit", $kode_penyakit);
             $insertpenyakit->bindParam(":nama_penyakit", $nama_penyakit);
+            $insertpenyakit->bindParam(":keterangan_penyakit", $keterangan_penyakit);
             $insertpenyakit->bindParam(":solusi", $solusi);
 
             if ($insertpenyakit->execute()) {
@@ -65,7 +66,7 @@ class penyakit extends koneksi
 
 
     //Edit Penyakit
-    public function Editpenyakit($id, $kode_penyakit, $nama_penyakit, $solusi)
+    public function Editpenyakit($id, $kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit)
     {
 
         try {
@@ -74,9 +75,10 @@ class penyakit extends koneksi
                 'kode_penyakit' => $kode_penyakit,
                 'nama_penyakit' => $nama_penyakit,
                 'solusi' => $solusi,
+                'pengertian' => $keterangan_penyakit
             ];
 
-            $editpenyakit = $this->db->prepare("UPDATE tb_penyakit SET kode_penyakit=:kode_penyakit,nama_penyakit=:nama_penyakit,solusi=:solusi WHERE id = :id");
+            $editpenyakit = $this->db->prepare("UPDATE tb_penyakit SET kode_penyakit=:kode_penyakit,nama_penyakit=:nama_penyakit,solusi=:solusi,pengertian=:pengertian WHERE id = :id");
             if ($editpenyakit->execute($data)) {
                 echo "<script>windows.location.href='../view/tb_penyakit.php?updates=update';</script>";
                 return true;

@@ -10,25 +10,46 @@ class pengetahuan extends koneksi
     public function Tambahpengetahuan($kode_gejala, $kode_penyakit)
     {
         try {
-            $tambahpengetahuan = $this->db->prepare("INSERT INTO tb_pengetahuan (kode_gejala, kode_penyakit) VALUES(:kode_gejala, :kode_penyakit)");
-            $tambahpengetahuan->bindParam(":kode_gejala", $kode_gejala);
-            $tambahpengetahuan->bindParam(":kode_penyakit", $kode_penyakit);
-
-            if ($tambahpengetahuan->execute()) {
+            // cek duplikasi
+            $query_cek = "SELECT * FROM tb_pengetahuan WHERE kode_gejala = '$kode_gejala' AND kode_penyakit = '$kode_penyakit'";
+            $result_cek = $this->db->prepare($query_cek);
+            $result_cek->execute();
+            $row_cek = $result_cek->fetch(PDO::FETCH_ASSOC);
+            if ($row_cek) {
                 echo "
                 <script>
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Data Berhasil Disimpan',
-                        showConfirmButton: false,
+                        icon: 'error',
+                        title: 'Data Gagal disimpan. Gejala dan penyakit sudah ada di sistem',
+                        showConfirmButton: true,
                         timer: 1500
                     }).then((result) => {
                         location.href = 'basis_pengetahuan.php'
                     });
                 </script>
                 ";
+                return false;
+            } else {
+                $tambahpengetahuan = $this->db->prepare("INSERT INTO tb_pengetahuan (kode_gejala, kode_penyakit) VALUES(:kode_gejala, :kode_penyakit)");
+                $tambahpengetahuan->bindParam(":kode_gejala", $kode_gejala);
+                $tambahpengetahuan->bindParam(":kode_penyakit", $kode_penyakit);
+    
+                if ($tambahpengetahuan->execute()) {
+                    echo "
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Data Berhasil Disimpan',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then((result) => {
+                            location.href = 'basis_pengetahuan.php'
+                        });
+                    </script>
+                    ";
+                }
+                return true;
             }
-            return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;

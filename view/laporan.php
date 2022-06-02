@@ -91,84 +91,15 @@ if (isset($_SESSION['status']) != 'login') {
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
-
-
-
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <center>
-                                        <h4 class="card-title">Kelola Basis Pengetahuan</h4>
+                                        <h4 class="card-title">Laporan</h4>
                                     </center>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pengetahuan</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-
-                                                    <?php
-
-                                                    require_once '../class/koneksi.php';
-                                                    require_once '../class/class_basis_pengetahuan.php';
-                                                    $dataPenyakit = $con->prepare("SELECT * FROM tb_penyakit");
-                                                    $dataPenyakit->execute();
-                                                    $dataPenyakit = $dataPenyakit->fetchAll();
-
-                                                    $dataGejala = $con->prepare("SELECT * FROM tb_gejala");
-                                                    $dataGejala->execute();
-                                                    $dataGejala = $dataGejala->fetchAll();
-
-                                                    if (isset($_POST['simpan'])) {
-                                                        $kode_penyakit = $_POST['penyakit'];
-                                                        $kode_gejala = $_POST['gejala'];
-                                                        $pengetahuan->Tambahpengetahuan($kode_gejala, $kode_penyakit);
-                                                    }
-                                                    ?>
-                                                    <form method="POST">
-                                                        <div class="form-group">
-                                                            <label>Penyakit</label>
-                                                            <select class="w-100 form-control" name="penyakit" id="penyakit" required>
-                                                                <option value="">Pilih Penyakit</option>
-                                                                <?php foreach ($dataPenyakit as $penyakit) : ?>
-                                                                    <option value="<?= $penyakit['kode_penyakit'] ?>"><?= "({$penyakit['kode_penyakit']}) {$penyakit['nama_penyakit']}" ?></option>
-                                                                <?php endforeach; ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputPassword1">Gejala</label>
-                                                            <select class="w-100 form-control" name="gejala" id="gejala" required>
-                                                            <option value="">Pilih Gejala</option>
-                                                                <?php foreach ($dataGejala as $gejala) : ?>
-                                                                    <option value="<?= $gejala['kode_gejala'] ?>"><?= "({$gejala['kode_gejala']}) {$gejala['nama_gejala']}" ?></option>
-                                                                <?php endforeach; ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="card-description">
-
-                                    </p>
                                     <div class="row justify-content-between">
                                         <div class="col-4">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                Tambah Pengetahuan
-                                            </button>
                                         </div>
                                         <div class="col-4">
                                             <input class="form-control" placeholder="Cari" type='text' id='input' onkeyup='searchTable()'>
@@ -178,20 +109,16 @@ if (isset($_SESSION['status']) != 'login') {
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Nama Gejala (Kode)</th>
-                                                    <th scope="col">Nama Penyakit (Kode)</th>
-                                                    <th>
-                                                        <center>
-                                                            Opsi
-                                                        </center>
-                                                    </th>
+                                                    <th scope="col">Nama</th>
+                                                    <th scope="col">Hasil</th>
+                                                    <th scope="col">Tanggal</th>
                                                 </tr>
                                             </thead>
 
                                             <?php
-                                            require_once '../class/class_basis_pengetahuan.php';
-                                            $query = "SELECT tb_pengetahuan.*, tb_gejala.nama_gejala, tb_penyakit.nama_penyakit FROM tb_pengetahuan JOIN tb_gejala ON tb_pengetahuan.kode_gejala = tb_gejala.kode_gejala JOIN tb_penyakit ON tb_pengetahuan.kode_penyakit = tb_penyakit.kode_penyakit";
-                                            $pengetahuan->Tampilpengetahuan($query);
+                                            require_once '../class/class_laporan.php';
+                                            $query = "SELECT tb_diagnosa.*, tb_login.nama as nama_user, tb_penyakit.nama_penyakit FROM tb_diagnosa JOIN tb_login ON tb_diagnosa.nama = tb_login.username JOIN tb_penyakit ON tb_diagnosa.penyakit = tb_penyakit.kode_penyakit";
+                                            $laporan->tampilLaporan($query);
                                             ?>
 
                                         </table>

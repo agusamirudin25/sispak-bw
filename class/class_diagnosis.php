@@ -60,6 +60,12 @@ class diagnosis extends koneksi
         $result_penyakit = $this->db->prepare($query_penyakit);
         $result_penyakit->execute();
         $row = $result_penyakit->fetch(PDO::FETCH_ASSOC);
+
+        // insert ke tb_diagnosa
+        $nama = $_SESSION['username'];
+        $query_diagnosa = "INSERT INTO tb_diagnosa (nama, penyakit) VALUES ('$nama', '$kode_penyakit')";
+        $result_diagnosa = $this->db->prepare($query_diagnosa);
+        $result_diagnosa->execute();
     ?>
         <div class="row">
             <div class="col-md-12">
@@ -88,6 +94,12 @@ class diagnosis extends koneksi
                                 <div class="form-group mb-0">
                                     <label>Nama Penyakit</label>
                                     <input type="text" class="form-control" value="<?= $row['nama_penyakit'] ?>" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-0">
+                                    <label>Keterangan Penyakit</label>
+                                    <textarea class="form-control" rows="6" readonly><?= $row['pengertian'] ?></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">

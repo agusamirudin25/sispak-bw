@@ -71,8 +71,8 @@ class pengetahuan extends koneksi
                 <td><?= "{$row['nama_penyakit']} ({$row['kode_penyakit']})"; ?></td>
                 <td>
                     <center>
-                        <a href="basis_pengetahuan_edit.php?id=<?= $row['id'] ?>" class='btn btn-warning'><span class='bi bi-pen'></span>Edit</a>
-                        <a class="del_pengetahuan btn btn-danger" id="<?= "{$row['id']}" ?>">Hapus</a>
+                        <a href="basis_pengetahuan_edit.php?id=<?= $row['id_pengetahuan'] ?>" class='btn btn-warning'><span class='bi bi-pen'></span>Edit</a>
+                        <a class="del_pengetahuan btn btn-danger" id="<?= "{$row['id_pengetahuan']}" ?>">Hapus</a>
                     </center>
                 </td>
             </tr>
@@ -84,7 +84,7 @@ class pengetahuan extends koneksi
     public function Editpengetahuan($id, $kode_gejala, $kode_penyakit)
     {
         try {
-            $editpengetahuan = $this->db->prepare("UPDATE tb_pengetahuan SET kode_gejala=:kode_gejala, kode_penyakit=:kode_penyakit WHERE id=:id");
+            $editpengetahuan = $this->db->prepare("UPDATE tb_pengetahuan SET kode_gejala=:kode_gejala, kode_penyakit=:kode_penyakit WHERE id_pengetahuan=:id");
             $editpengetahuan->bindParam(":id", $id);
             $editpengetahuan->bindParam(":kode_gejala", $kode_gejala);
             $editpengetahuan->bindParam(":kode_penyakit", $kode_penyakit);
@@ -114,7 +114,7 @@ class pengetahuan extends koneksi
     //Hapus pengetahuan
     public function hapuspengetahuan($id)
     {
-        $hapuspengetahuan = $this->db->prepare("DELETE FROM tb_pengetahuan where id='$id'");
+        $hapuspengetahuan = $this->db->prepare("DELETE FROM tb_pengetahuan where id_pengetahuan='$id'");
         $hapuspengetahuan->execute();
         return true;
     }

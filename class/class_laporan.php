@@ -11,12 +11,13 @@ class laporan extends koneksi
         $query->execute();
 
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) : ?>
-            <tr>
-                <td><?= "{$row['nama_user']}"; ?></td>
-                <td><?= "{$row['penyakit']}"; ?></td>
-                <td><?= "{$row['tanggal']}"; ?></td>
-            </tr>
-        <?php endwhile;
+<tr>
+    <td><?= "{$row['nama_user']}"; ?></td>
+    <td><?= "{$row['penyakit']}"; ?></td>
+    <td><?= "{$row['nama_penyakit']}"; ?></td>
+    <td><?= "{$row['tanggal']}"; ?></td>
+</tr>
+<?php endwhile;
     }
 
 

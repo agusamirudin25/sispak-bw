@@ -11,7 +11,7 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 02/06/2022 19:48:27
+ Date: 09/06/2022 11:12:04
 */
 
 SET NAMES utf8mb4;
@@ -22,75 +22,97 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_diagnosa`;
 CREATE TABLE `tb_diagnosa`  (
-  `id` int(1) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `penyakit` varchar(4) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_diagnosa` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `penyakit` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `tanggal` datetime(0) NULL DEFAULT current_timestamp(0),
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id_diagnosa`) USING BTREE,
+  INDEX `username`(`username`) USING BTREE,
+  INDEX `kd_penyakit`(`penyakit`) USING BTREE,
+  CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `tb_login` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `kd_penyakit` FOREIGN KEY (`penyakit`) REFERENCES `tb_penyakit` (`kode_penyakit`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_diagnosa
 -- ----------------------------
-INSERT INTO `tb_diagnosa` VALUES (1, 'user', 'P1', '2022-06-02 19:24:04');
-INSERT INTO `tb_diagnosa` VALUES (2, 'user', 'P1', '2022-06-02 19:37:48');
-INSERT INTO `tb_diagnosa` VALUES (3, 'user', 'P1', '2022-06-02 19:39:36');
-INSERT INTO `tb_diagnosa` VALUES (4, 'user', 'P1', '2022-06-02 19:39:44');
-INSERT INTO `tb_diagnosa` VALUES (5, 'user', 'P1', '2022-06-02 19:47:19');
+INSERT INTO `tb_diagnosa` VALUES (26, 'user', 'P01', '2022-06-05 12:09:58');
+INSERT INTO `tb_diagnosa` VALUES (27, 'user', 'P01', '2022-06-05 12:10:17');
+INSERT INTO `tb_diagnosa` VALUES (28, 'user', 'P01', '2022-06-05 12:13:10');
+INSERT INTO `tb_diagnosa` VALUES (29, 'user', 'P01', '2022-06-05 12:13:33');
+INSERT INTO `tb_diagnosa` VALUES (30, 'user', 'P01', '2022-06-05 12:14:01');
+INSERT INTO `tb_diagnosa` VALUES (31, 'user', 'P02', '2022-06-05 12:32:44');
+INSERT INTO `tb_diagnosa` VALUES (32, 'user', 'P01', '2022-06-05 17:04:22');
+INSERT INTO `tb_diagnosa` VALUES (33, 'user', 'P01', '2022-06-05 17:45:30');
+INSERT INTO `tb_diagnosa` VALUES (34, 'user', 'P02', '2022-06-05 18:20:13');
+INSERT INTO `tb_diagnosa` VALUES (35, 'elyzaa', 'P02', '2022-06-05 19:09:33');
+INSERT INTO `tb_diagnosa` VALUES (36, 'user', 'P01', '2022-06-06 14:57:20');
+INSERT INTO `tb_diagnosa` VALUES (37, 'user', 'P01', '2022-06-06 20:46:32');
+INSERT INTO `tb_diagnosa` VALUES (38, 'user', 'P01', '2022-06-06 20:54:02');
+INSERT INTO `tb_diagnosa` VALUES (39, 'user', 'P02', '2022-06-06 20:54:14');
+INSERT INTO `tb_diagnosa` VALUES (40, 'user', 'P01', '2022-06-07 09:47:49');
+INSERT INTO `tb_diagnosa` VALUES (41, 'user', 'P03', '2022-06-07 11:34:15');
+INSERT INTO `tb_diagnosa` VALUES (42, 'user', 'P03', '2022-06-07 11:34:41');
+INSERT INTO `tb_diagnosa` VALUES (43, 'user', 'P01', '2022-06-07 11:35:12');
+INSERT INTO `tb_diagnosa` VALUES (44, 'user', 'P01', '2022-06-07 11:35:18');
+INSERT INTO `tb_diagnosa` VALUES (45, 'user', 'P01', '2022-06-07 11:35:32');
+INSERT INTO `tb_diagnosa` VALUES (46, 'user', 'P01', '2022-06-07 11:37:05');
+INSERT INTO `tb_diagnosa` VALUES (47, 'user', 'P04', '2022-06-07 12:00:49');
+INSERT INTO `tb_diagnosa` VALUES (48, 'user', 'P012', '2022-06-07 12:15:57');
+INSERT INTO `tb_diagnosa` VALUES (49, 'user', 'P012', '2022-06-07 12:16:33');
 
 -- ----------------------------
 -- Table structure for tb_gejala
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_gejala`;
 CREATE TABLE `tb_gejala`  (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
   `kode_gejala` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama_gejala` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`kode_gejala`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_gejala
 -- ----------------------------
-INSERT INTO `tb_gejala` VALUES (35, 'G1', 'Bayi terlihat lemas');
-INSERT INTO `tb_gejala` VALUES (36, 'G2', 'Suhu bayi terasa dingin');
-INSERT INTO `tb_gejala` VALUES (37, 'G3', 'Kulit bayi memerah');
-INSERT INTO `tb_gejala` VALUES (38, 'G4', 'Bayi sulit bernapas');
-INSERT INTO `tb_gejala` VALUES (39, 'G5', 'Bayi sering buang air besar');
-INSERT INTO `tb_gejala` VALUES (40, 'G6', 'Tinja bayi berwarna hitam');
-INSERT INTO `tb_gejala` VALUES (41, 'G7', 'Nafas bayi tidak teratur');
-INSERT INTO `tb_gejala` VALUES (42, 'G8', 'Bayi  mendengus');
-INSERT INTO `tb_gejala` VALUES (43, 'G9', 'Kulit bayi membiru');
-INSERT INTO `tb_gejala` VALUES (44, 'G10', 'Bayi batuk');
-INSERT INTO `tb_gejala` VALUES (47, 'G11', 'Bayi buang air besar kurang dari tiga kali seminggu');
-INSERT INTO `tb_gejala` VALUES (48, 'G12', 'Bayi rewel karena kesakitan ketika mengejan saat buang air besar');
-INSERT INTO `tb_gejala` VALUES (49, 'G13', 'Bayi mengalamai kesulitan mengeluarkan feses karena kering dan keras');
-INSERT INTO `tb_gejala` VALUES (50, 'G14', 'Bayi berkeringat ');
-INSERT INTO `tb_gejala` VALUES (51, 'G15', 'Bayi menggigil ');
-INSERT INTO `tb_gejala` VALUES (52, 'G16', 'Benjolan kemerahan di kelopak mata ');
-INSERT INTO `tb_gejala` VALUES (53, 'G17', 'Benjolan kecil di kelopak mata ');
-INSERT INTO `tb_gejala` VALUES (54, 'G18', 'Mata bayi berair');
-INSERT INTO `tb_gejala` VALUES (55, 'G19', 'Bayi demam hingga lebih dari 40° C ');
-INSERT INTO `tb_gejala` VALUES (56, 'G20', 'Muncul ruam di tubuh bayi');
-INSERT INTO `tb_gejala` VALUES (57, 'G21', 'Lingkar kepala bayi terlihat semakin membesar');
-INSERT INTO `tb_gejala` VALUES (58, 'G22', 'Urat urat pada kepala bayi terlihat jelas');
-INSERT INTO `tb_gejala` VALUES (59, 'G23', 'Ubun ubun bayi terlihat menggelembung');
-INSERT INTO `tb_gejala` VALUES (60, 'G24', 'Bayi mengalami bersin-bersin');
-INSERT INTO `tb_gejala` VALUES (61, 'G25', 'Bayi mengeluarkan cairan/lendir pada hidung');
-INSERT INTO `tb_gejala` VALUES (62, 'G26', 'Bengkak disekitar hidung dan mata bayi');
-INSERT INTO `tb_gejala` VALUES (63, 'G27', 'Bayi demam');
-INSERT INTO `tb_gejala` VALUES (64, 'G28', 'Bayi menangis terus menerus ');
-INSERT INTO `tb_gejala` VALUES (65, 'G29', 'Bayi sulit mengonsumsi asi');
-INSERT INTO `tb_gejala` VALUES (66, 'G30', 'Terdapat ruam serta bercak berwarna ungu');
-INSERT INTO `tb_gejala` VALUES (67, 'G31', 'Jumlah jari tangan atau kaki bayi berlebih');
-INSERT INTO `tb_gejala` VALUES (68, 'G32', 'Benjolan kecil jaringan lunak yang menonjol, tidak mengandung tulang');
-INSERT INTO `tb_gejala` VALUES (69, 'G33', 'Jari memiliki tulang namun tidak memiliki persendian');
-INSERT INTO `tb_gejala` VALUES (70, 'G34', 'Bayi kekurangan hemoglobin');
-INSERT INTO `tb_gejala` VALUES (71, 'G35', 'Tingkat oksigen dan darah rendah');
-INSERT INTO `tb_gejala` VALUES (72, 'G36', 'Kulit yang terlihat lebih pucat');
-INSERT INTO `tb_gejala` VALUES (73, 'G37', 'Kulit tubuh bayi terlihat kuning');
-INSERT INTO `tb_gejala` VALUES (74, 'G38', 'Tonjolan lunak di area pusar');
-INSERT INTO `tb_gejala` VALUES (75, 'G39', 'Bengkak dan benjolan berubah warna');
+INSERT INTO `tb_gejala` VALUES ('G01', 'Bayi terlihat lemas');
+INSERT INTO `tb_gejala` VALUES ('G010', 'Bayi batuk');
+INSERT INTO `tb_gejala` VALUES ('G011', 'Bayi buang air besar kurang dari tiga kali seminggu');
+INSERT INTO `tb_gejala` VALUES ('G012', 'Bayi rewel karena kesakitan ketika mengejan saat buang air besar');
+INSERT INTO `tb_gejala` VALUES ('G013', 'Bayi mengalami kesulitan mengeluarkan feses karena kering dan keras');
+INSERT INTO `tb_gejala` VALUES ('G014', 'Bayi berkeringat ');
+INSERT INTO `tb_gejala` VALUES ('G015', 'Bayi menggigil ');
+INSERT INTO `tb_gejala` VALUES ('G016', 'Benjolan kemerahan di kelopak mata ');
+INSERT INTO `tb_gejala` VALUES ('G017', 'Benjolan kecil di kelopak mata ');
+INSERT INTO `tb_gejala` VALUES ('G018', 'Mata bayi berair');
+INSERT INTO `tb_gejala` VALUES ('G019', 'Bayi demam hingga lebih dari 40° C ');
+INSERT INTO `tb_gejala` VALUES ('G02', 'Suhu bayi terasa dingin');
+INSERT INTO `tb_gejala` VALUES ('G020', 'Muncul ruam di tubuh bayi');
+INSERT INTO `tb_gejala` VALUES ('G021', 'Lingkar kepala bayi terlihat semakin membesar');
+INSERT INTO `tb_gejala` VALUES ('G022', 'Urat urat pada kepala bayi terlihat jelas');
+INSERT INTO `tb_gejala` VALUES ('G023', 'Ubun ubun bayi terlihat menggelembung');
+INSERT INTO `tb_gejala` VALUES ('G024', 'Bayi mengalami bersin bersin');
+INSERT INTO `tb_gejala` VALUES ('G025', 'Bayi mengeluarkan cairan/lendir pada hidung');
+INSERT INTO `tb_gejala` VALUES ('G026', 'Bengkak disekitar hidung dan mata bayi');
+INSERT INTO `tb_gejala` VALUES ('G027', 'Bayi demam');
+INSERT INTO `tb_gejala` VALUES ('G028', 'Bayi menangis terus menerus ');
+INSERT INTO `tb_gejala` VALUES ('G029', 'Bayi sulit mengkonsumsi asi');
+INSERT INTO `tb_gejala` VALUES ('G03', 'Kulit bayi memerah');
+INSERT INTO `tb_gejala` VALUES ('G030', 'Terdapat ruam serta bercak berwarna ungu');
+INSERT INTO `tb_gejala` VALUES ('G031', 'Jumlah jari tangan atau kaki bayi berlebih');
+INSERT INTO `tb_gejala` VALUES ('G032', 'Benjolan kecil jaringan lunak yang menonjol, tidak mengandung tulang');
+INSERT INTO `tb_gejala` VALUES ('G033', 'Jari memiliki tulang namun tidak memiliki persendian');
+INSERT INTO `tb_gejala` VALUES ('G034', 'Bayi kekurangan hemoglobin');
+INSERT INTO `tb_gejala` VALUES ('G035', 'Tingkat oksigen dan darah rendah');
+INSERT INTO `tb_gejala` VALUES ('G036', 'Kulit yang terlihat lebih pucat');
+INSERT INTO `tb_gejala` VALUES ('G037', 'Kulit tubuh bayi terlihat kuning');
+INSERT INTO `tb_gejala` VALUES ('G038', 'Benjolan lunak di area pusar');
+INSERT INTO `tb_gejala` VALUES ('G039', 'Bengkak dan benjolan berubah warna');
+INSERT INTO `tb_gejala` VALUES ('G04', 'Bayi sulit bernapas');
+INSERT INTO `tb_gejala` VALUES ('G05', 'Bayi sering buang air besar');
+INSERT INTO `tb_gejala` VALUES ('G06', 'Tinja bayi berwarna hitam');
+INSERT INTO `tb_gejala` VALUES ('G07', 'Nafas bayi tidak teratur');
+INSERT INTO `tb_gejala` VALUES ('G08', 'Bayi  mendengus');
+INSERT INTO `tb_gejala` VALUES ('G09', 'Kulit bayi membiru');
 
 -- ----------------------------
 -- Table structure for tb_konsul
@@ -98,142 +120,137 @@ INSERT INTO `tb_gejala` VALUES (75, 'G39', 'Bengkak dan benjolan berubah warna')
 DROP TABLE IF EXISTS `tb_konsul`;
 CREATE TABLE `tb_konsul`  (
   `id_konsul` int(10) NOT NULL AUTO_INCREMENT,
-  `id_user` int(10) NOT NULL,
-  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `pesan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tujuan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `waktu` datetime(0) NOT NULL,
-  PRIMARY KEY (`id_konsul`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id_konsul`) USING BTREE,
+  INDEX `user_name`(`username`) USING BTREE,
+  CONSTRAINT `user_name` FOREIGN KEY (`username`) REFERENCES `tb_login` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_konsul
 -- ----------------------------
-INSERT INTO `tb_konsul` VALUES (61, 38, 'user', 'wwww', 'pakar', '2022-05-24 18:45:49');
-INSERT INTO `tb_konsul` VALUES (62, 37, 'pakar', 'eee', '38', '2022-05-24 18:46:50');
-INSERT INTO `tb_konsul` VALUES (63, 37, 'pakar', 'ttt', '38', '2022-05-24 18:47:25');
-INSERT INTO `tb_konsul` VALUES (64, 37, 'pakar', 'hyhhh', '38', '2022-05-24 18:47:28');
-INSERT INTO `tb_konsul` VALUES (65, 37, 'pakar', 'jjjjjjjjj', '38', '2022-05-24 18:47:31');
-INSERT INTO `tb_konsul` VALUES (66, 37, 'pakar', 'iiiiiiiii', '38', '2022-05-24 18:47:35');
-INSERT INTO `tb_konsul` VALUES (67, 37, 'pakar', 'uuuuuuuuuuuuuu', '38', '2022-05-24 18:47:38');
-INSERT INTO `tb_konsul` VALUES (68, 37, 'pakar', 'uuuuuuuuuu', '38', '2022-05-24 18:47:40');
-INSERT INTO `tb_konsul` VALUES (69, 37, 'pakar', 'uuuuuuu', '38', '2022-05-24 18:47:43');
-INSERT INTO `tb_konsul` VALUES (70, 38, 'user', 'yyy', 'pakar', '2022-05-24 18:48:29');
-INSERT INTO `tb_konsul` VALUES (71, 38, 'user', 'asdasdasd', 'pakar', '2022-05-24 18:50:06');
-INSERT INTO `tb_konsul` VALUES (72, 38, 'user', 'gbggg', 'pakar', '2022-05-24 18:52:22');
-INSERT INTO `tb_konsul` VALUES (73, 38, 'user', 'gblg', 'pakar', '2022-05-24 18:56:24');
-INSERT INTO `tb_konsul` VALUES (74, 37, 'pakar', 'gl', '38', '2022-05-24 18:56:58');
-INSERT INTO `tb_konsul` VALUES (75, 37, 'pakar', 'dsd', '38', '2022-05-30 17:31:53');
-INSERT INTO `tb_konsul` VALUES (76, 38, 'user', 'test', 'pakar', '2022-05-31 22:08:10');
+INSERT INTO `tb_konsul` VALUES (1, 'user', 'tess', 'pakar', '2022-06-09 09:47:26');
+INSERT INTO `tb_konsul` VALUES (2, 'user', 'test lagi', 'pakar', '2022-06-09 09:50:00');
+INSERT INTO `tb_konsul` VALUES (3, 'pakar', 'ya', 'user', '2022-06-09 09:58:28');
+INSERT INTO `tb_konsul` VALUES (4, 'pakar', 'apa tuh', 'user', '2022-06-09 09:58:34');
+INSERT INTO `tb_konsul` VALUES (5, 'user', 'ngga', 'pakar', '2022-06-09 09:58:52');
 
 -- ----------------------------
 -- Table structure for tb_login
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_login`;
 CREATE TABLE `tb_login`  (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `hak_akses` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`username`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_login
 -- ----------------------------
-INSERT INTO `tb_login` VALUES (28, 'alvin', 'alvins', '1234', 'admin');
-INSERT INTO `tb_login` VALUES (37, 'pakar', 'pakar', 'pakar', 'pakar');
-INSERT INTO `tb_login` VALUES (38, 'user', 'user', 'user', 'user');
-INSERT INTO `tb_login` VALUES (39, 'as', 'asd', '123', 'user');
+INSERT INTO `tb_login` VALUES ('alvins', 'alvin', '1234', 'admin');
+INSERT INTO `tb_login` VALUES ('asd', 'as', '123', 'user');
+INSERT INTO `tb_login` VALUES ('elyzaa', 'elyza', '1234', 'user');
+INSERT INTO `tb_login` VALUES ('niv', 'Alvin Supriyan', '1234', 'user');
+INSERT INTO `tb_login` VALUES ('pakar', 'pakar', 'pakar', 'pakar');
+INSERT INTO `tb_login` VALUES ('user', 'user', 'user', 'user');
 
 -- ----------------------------
 -- Table structure for tb_pengetahuan
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_pengetahuan`;
 CREATE TABLE `tb_pengetahuan`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `kode_gejala` varchar(4) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `kode_penyakit` varchar(4) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  `id_pengetahuan` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_gejala` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `kode_penyakit` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id_pengetahuan`) USING BTREE,
+  INDEX `kd_gejala`(`kode_gejala`) USING BTREE,
+  INDEX `kd_penyakit_pengetahuan`(`kode_penyakit`) USING BTREE,
+  CONSTRAINT `kd_gejala` FOREIGN KEY (`kode_gejala`) REFERENCES `tb_gejala` (`kode_gejala`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `kd_penyakit_pengetahuan` FOREIGN KEY (`kode_penyakit`) REFERENCES `tb_penyakit` (`kode_penyakit`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 91 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_pengetahuan
 -- ----------------------------
-INSERT INTO `tb_pengetahuan` VALUES (1, 'G1', 'P1');
-INSERT INTO `tb_pengetahuan` VALUES (2, 'G2', 'P1');
-INSERT INTO `tb_pengetahuan` VALUES (3, 'G3', 'P1');
-INSERT INTO `tb_pengetahuan` VALUES (4, 'G4', 'P1');
-INSERT INTO `tb_pengetahuan` VALUES (5, 'G5', 'P2');
-INSERT INTO `tb_pengetahuan` VALUES (6, 'G6', 'P2');
-INSERT INTO `tb_pengetahuan` VALUES (7, 'G1', 'P2');
-INSERT INTO `tb_pengetahuan` VALUES (8, 'G7', 'P3');
-INSERT INTO `tb_pengetahuan` VALUES (9, 'G8', 'P3');
-INSERT INTO `tb_pengetahuan` VALUES (10, 'G9', 'P3');
-INSERT INTO `tb_pengetahuan` VALUES (11, 'G10', 'P3');
-INSERT INTO `tb_pengetahuan` VALUES (12, 'G11', 'P4');
-INSERT INTO `tb_pengetahuan` VALUES (13, 'G12', 'P4');
-INSERT INTO `tb_pengetahuan` VALUES (14, 'G13', 'P4');
-INSERT INTO `tb_pengetahuan` VALUES (15, 'G14', 'P5');
-INSERT INTO `tb_pengetahuan` VALUES (16, 'G15', 'P5');
-INSERT INTO `tb_pengetahuan` VALUES (17, 'G1', 'P5');
-INSERT INTO `tb_pengetahuan` VALUES (18, 'G16', 'P6');
-INSERT INTO `tb_pengetahuan` VALUES (19, 'G17', 'P6');
-INSERT INTO `tb_pengetahuan` VALUES (20, 'G18', 'P6');
-INSERT INTO `tb_pengetahuan` VALUES (21, 'G10', 'P7');
-INSERT INTO `tb_pengetahuan` VALUES (22, 'G19', 'P7');
-INSERT INTO `tb_pengetahuan` VALUES (23, 'G20', 'P7');
-INSERT INTO `tb_pengetahuan` VALUES (24, 'G21', 'P8');
-INSERT INTO `tb_pengetahuan` VALUES (25, 'G22', 'P8');
-INSERT INTO `tb_pengetahuan` VALUES (26, 'G23', 'P8');
-INSERT INTO `tb_pengetahuan` VALUES (27, 'G24', 'P9');
-INSERT INTO `tb_pengetahuan` VALUES (28, 'G25', 'P9');
-INSERT INTO `tb_pengetahuan` VALUES (29, 'G26', 'P9');
-INSERT INTO `tb_pengetahuan` VALUES (30, 'G27', 'P10');
-INSERT INTO `tb_pengetahuan` VALUES (31, 'G28', 'P10');
-INSERT INTO `tb_pengetahuan` VALUES (32, 'G29', 'P10');
-INSERT INTO `tb_pengetahuan` VALUES (33, 'G30', 'P10');
-INSERT INTO `tb_pengetahuan` VALUES (34, 'G31', 'P11');
-INSERT INTO `tb_pengetahuan` VALUES (35, 'G32', 'P11');
-INSERT INTO `tb_pengetahuan` VALUES (36, 'G33', 'P11');
-INSERT INTO `tb_pengetahuan` VALUES (37, 'G34', 'P12');
-INSERT INTO `tb_pengetahuan` VALUES (38, 'G35', 'P12');
-INSERT INTO `tb_pengetahuan` VALUES (39, 'G36', 'P12');
-INSERT INTO `tb_pengetahuan` VALUES (40, 'G1', 'P12');
-INSERT INTO `tb_pengetahuan` VALUES (41, 'G37', 'P12');
-INSERT INTO `tb_pengetahuan` VALUES (42, 'G38', 'P13');
-INSERT INTO `tb_pengetahuan` VALUES (43, 'G39', 'P13');
-INSERT INTO `tb_pengetahuan` VALUES (44, 'G27', 'P13');
+INSERT INTO `tb_pengetahuan` VALUES (45, 'G01', 'P01');
+INSERT INTO `tb_pengetahuan` VALUES (46, 'G02', 'P01');
+INSERT INTO `tb_pengetahuan` VALUES (47, 'G03', 'P01');
+INSERT INTO `tb_pengetahuan` VALUES (48, 'G04', 'P01');
+INSERT INTO `tb_pengetahuan` VALUES (49, 'G05', 'P02');
+INSERT INTO `tb_pengetahuan` VALUES (50, 'G06', 'P02');
+INSERT INTO `tb_pengetahuan` VALUES (51, 'G01', 'P02');
+INSERT INTO `tb_pengetahuan` VALUES (52, 'G07', 'P03');
+INSERT INTO `tb_pengetahuan` VALUES (53, 'G08', 'P03');
+INSERT INTO `tb_pengetahuan` VALUES (54, 'G09', 'P03');
+INSERT INTO `tb_pengetahuan` VALUES (55, 'G010', 'P03');
+INSERT INTO `tb_pengetahuan` VALUES (56, 'G011', 'P04');
+INSERT INTO `tb_pengetahuan` VALUES (57, 'G012', 'P04');
+INSERT INTO `tb_pengetahuan` VALUES (58, 'G013', 'P04');
+INSERT INTO `tb_pengetahuan` VALUES (59, 'G01', 'P05');
+INSERT INTO `tb_pengetahuan` VALUES (60, 'G014', 'P05');
+INSERT INTO `tb_pengetahuan` VALUES (61, 'G015', 'P05');
+INSERT INTO `tb_pengetahuan` VALUES (62, 'G016', 'P06');
+INSERT INTO `tb_pengetahuan` VALUES (63, 'G017', 'P06');
+INSERT INTO `tb_pengetahuan` VALUES (64, 'G018', 'P06');
+INSERT INTO `tb_pengetahuan` VALUES (65, 'G010', 'P07');
+INSERT INTO `tb_pengetahuan` VALUES (66, 'G019', 'P07');
+INSERT INTO `tb_pengetahuan` VALUES (67, 'G020', 'P07');
+INSERT INTO `tb_pengetahuan` VALUES (68, 'G021', 'P08');
+INSERT INTO `tb_pengetahuan` VALUES (69, 'G022', 'P08');
+INSERT INTO `tb_pengetahuan` VALUES (70, 'G023', 'P08');
+INSERT INTO `tb_pengetahuan` VALUES (71, 'G024', 'P09');
+INSERT INTO `tb_pengetahuan` VALUES (72, 'G025', 'P09');
+INSERT INTO `tb_pengetahuan` VALUES (73, 'G026', 'P09');
+INSERT INTO `tb_pengetahuan` VALUES (74, 'G027', 'P010');
+INSERT INTO `tb_pengetahuan` VALUES (75, 'G028', 'P010');
+INSERT INTO `tb_pengetahuan` VALUES (76, 'G029', 'P010');
+INSERT INTO `tb_pengetahuan` VALUES (77, 'G030', 'P010');
+INSERT INTO `tb_pengetahuan` VALUES (78, 'G031', 'P011');
+INSERT INTO `tb_pengetahuan` VALUES (79, 'G032', 'P011');
+INSERT INTO `tb_pengetahuan` VALUES (80, 'G033', 'P011');
+INSERT INTO `tb_pengetahuan` VALUES (81, 'G01', 'P012');
+INSERT INTO `tb_pengetahuan` VALUES (82, 'G034', 'P012');
+INSERT INTO `tb_pengetahuan` VALUES (83, 'G033', 'P012');
+INSERT INTO `tb_pengetahuan` VALUES (84, 'G035', 'P012');
+INSERT INTO `tb_pengetahuan` VALUES (85, 'G036', 'P012');
+INSERT INTO `tb_pengetahuan` VALUES (86, 'G037', 'P012');
+INSERT INTO `tb_pengetahuan` VALUES (87, 'G027', 'P013');
+INSERT INTO `tb_pengetahuan` VALUES (88, 'G038', 'P013');
+INSERT INTO `tb_pengetahuan` VALUES (89, 'G039', 'P013');
 
 -- ----------------------------
 -- Table structure for tb_penyakit
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_penyakit`;
 CREATE TABLE `tb_penyakit`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `kode_penyakit` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama_penyakit` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `pengertian` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `keterangan_penyakit` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `solusi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`kode_penyakit`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_penyakit
 -- ----------------------------
-INSERT INTO `tb_penyakit` VALUES (1, 'P1', 'Hipotermia', 'testyaa', '-');
-INSERT INTO `tb_penyakit` VALUES (2, 'P2', 'Diare', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (3, 'P3', 'Dispnea', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (4, 'P4', 'Konstipasi', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (5, 'P5', 'Obs Febris', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (6, 'P6', 'Hordeolum', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (7, 'P7', 'Campak', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (8, 'P8', 'Hidrosefalus', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (9, 'P9', 'Infeksi sinus', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (10, 'P10', 'Meningitis', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (11, 'P11', 'Polidaktili', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (12, 'P12', 'Anemia', NULL, '');
-INSERT INTO `tb_penyakit` VALUES (13, 'P13', 'Hernia umbilikalis', NULL, '');
+INSERT INTO `tb_penyakit` VALUES ('P01', 'Hipotermia', 'Hipotermia merupakan salah satu penyebab utama tingginya angka morbiditas dan mortalitas bayi baru lahir. Hipotermia pada bayi baru lahir disebabkan belum sempurnanya pengaturan suhu tubuh bayi, maupun pengetahuan yang kurang tentang pengelolaan bayi baru lahir yang benar. Pengaturan suhu tubuh bayi baru lahir sangat penting untuk kelangsungan hidup dan mencegah terjadinya hipotermia. Hipotermia pada bayi baru lahir mempengaruhi metabolisme tubuh dan dapat mengakibatkan komplikasi hipoglikemia, asidosis metabolik, distres pernapasan, dan infeksi. Hipotermia terjadi apabila suhu tubuh di bawah 36,50 C. Hipotermia terjadi akibat ketidakseimbangan antara produksi panas dan kehilangan panas. Kehilangan panas pada bayi baru lahir dapat melalui 4 cara yaitu evaporasi, konduksi, radiasi, dan konveksi. Kesalahan penanganan sesudah lahir dapat menyebabkan bayi baru lahir kehilangan panas akibat keempat cara tersebut (Puspita dkk., 2007). Hipotermia menyebabkan terjadinya penyempitan pembuluh darah yang mengakibatkan terjadinya metabolis anaerobik, meningkatkan kebutuhan oksigen, mengakibatkan hipoksemia dan berlanjut dengan kematian (Saifuddin, 2008).', 'Apabila bayi kedinginan dan menunjukkan gejala hipotermia, cobalah untuk mengukur suhu tubuhnya. Pengukuran suhu yang paling akurat dapat dilakukan melalui rektal. Namun jika tidak memiliki termometer khusus rektal, pengukuran suhu lewat ketiak juga dapat dilakukan. Gunakan inkubator. Ganti pakaian basah dengan pakaian hangat disertai topi. Tempatkan bayi di ruangan hangat.\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P010', 'Meningitis', 'Meningitis adalah radang dari selaput otak yaitu lapisan arachnoid dan piameter yang disebabkan oleh bakteri dan virus (Judha & Rahil, 2012). Meningitis adalah infeksi akut yang mengenai selaput mengineal yang dapat disebabkan oleh berbagai mikroorganisme dengan ditandai adanya gejala spesifik dari sistem saraf pusat yaitu gangguan kesadaran, gejala rangsang meningkat, gejala peningkatan tekanan intrakranial dan gejala defisit neurologi (Widagdo, 2011). Perlu di ketahui bahwa bayi dan balita adalah kelompok yang paling rentan mengalami meningitis. Pasalnya, lebih dari 50 persen kasus meningitis terjadi pada kelompok ini. Meningitis bisa berkembang secara tiba-tiba sekaligus menjadi serius dengan cepat sehingga berbagai gejala kemudian akan bermunculan. Gejala meningitis pada bayi yaitu demam, menangis terus menerus, kurang mau atau tidak mau menyusu. Setelah di ketahui gejala-gejala yang timbul pada bayi yang terjangkit meningitis sebaiknya di bawa ke dokter. Pengobatan serta perawatan meningitis pada bayi akan dokter lakukan sesuai dengan gejala, usia, serta kondisi kesehatan sebelumnya. ', '1)	Setelah diketahui gejala-gejala yang timbul pada bayi yang terjangkit meningitis sebaiknya di bawa ke dokter. Pengobatan serta perawatan meningitis pada bayi akan dokter lakukan sesuai dengan gejala, usia, serta kondisi kesehatan sebelumnya. Sebagai contoh, jika penyebab meningitis adalah bakteri, dokter akan memberikan antibiotik melalui intravena (iv) serta obat kortikosteroid untuk mengurangi peradangan\r\n2)	Jika penyebab meningitis adalah virus, dokter hanya bisa memberikan obat pereda nyeri untuk meredakan gejala. Hal ini karena meningitis virus umumnya pulih dalam 7 – 10 hari.\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P011', 'Polidaktili', 'Polidaktili adalah cacat atau kelainan bawaan yang membuat bayi lahir dengan tambahan jumlah jari tangan atau kaki. Polidaktili adalah kondisi yang bisa terjadi pada salah satu maupun kedua tangan atau kaki. Istilah polidaktili berasal dari bahasa Yunani yakni poli yang berarti “banyak” dan dactylos yang artinya “jari”. Polidaktili adalah kondisi kelainan bawaan yang bisa terbagi menjadi beberapa jenis. Mengutip dari Kids Health, cacat lahir ini biasanya paling sering terjadi pada sisi jari kelingking atau jari kelima di tangan dan kaki. Jenis polidaktili ini adalah postaxial. Sebaliknya, cacat lahir ini paling jarang terjadi di sisi ibu jari (preaxial) maupun tumbuh di bagian tengah jari tangan dan kaki. Ukuran jari tambahan, entah pada tangan atau kaki, umumnya lebih kecil dari ukuran jari yang lainnya. Kelainan bawaan ini bisa menurun dalam keluarga dan dipengaruhi juga oleh faktor lingkungan. Jadi, berisiko melahirkan bayi dengan kondisi kelainan lahir ini bila memiliki anggota keluarga lain yang juga mengalaminya. Polidaktili adalah kondisi kelainan bawaan yang biasanya ditangani dalam kurun waktu dua tahun pertama usia bayi. Pengobatan untuk polidaktili dilakukan dengan operasi, tetapi disesuaikan kembali dengan jenisnya.', 'Pengobatan untuk polidaktili dilakukan dengan operasi, tetapi disesuaikan kembali dengan jenisnya.');
+INSERT INTO `tb_penyakit` VALUES ('P012', 'Anemia', 'Mengutip Cleveland Clinic, bayi juga bisa mengalami anemia, yaitu saat jumlah sel darah merah lebih rendah jumlahnya dari kadar normal. Sel darah merah atau hemoglobin (hb) berfungsi untuk membawa oksigen ke seluruh tubuh. Maka dari itu, hb yang rendah pada bayi bisa membuatnya terlihat pucat serta lemas. Gejalanya yaitu kekurangan hemoglobin, Tingkat oksigen dan darah rendah, kulit yang terlihat lebih pucat, bayi terlihat lemas, kulit tubuh bayi terlihat kuning. Penanganan anemia pada bayi akan disesuaikan dengan penyebab yang mendasarinya. Jika anemia disebabkan oleh perdarahan, maka penanganannya adalah dengan menghentikan perdarahan dan mengganti darah yang hilang lewat transfusi darah. ', '1)	Jika penyebab anemia adalah kurang zat besi, maka penanganannya adalah dengan pemberian makanan tinggi zat besi\r\n2)	Pemberian suplemen zat besi\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P013', 'Hernia Umbilikalis', 'Hernia adalah Penonjolan (protusio) abnormal organ, sebagian organ atau jaringan ke dalam rongga abdomen melalui suatu celah alami dari individu tersebut atau lubang abnormal yang terjadi pada dinding abdomen atau diafragma (Krishnamurthy, 1995) Hernia umbilikalis adalah kegagalan cincin umbilicus pada peritoneum untuk menutup sempurna sehingga terjadi penonjolan omentun, organ atau sebagian organ abdomen melalui cincin umbilikalis yang terbuka (Smith, 2002). Hernia umbilikalis adalah suatu kondisi ketika terdapat bagian usus yang menonjol keluar dari pusar. Kondisi ini umumnya dialami oleh bayi dan tidak berbahaya. Meskipun demikian, hernia umbilikalis juga dapat terjadi pada orang dewasa. Hernia umbilikalis umumnya akan menghilang dengan sendirinya setelah bayi berumur satu atau dua tahun, tetapi dapat juga bertahan lebih lama. Jika hernia umbilikalis menetap hingga anak berusia empat tahun, disarankan untuk menjalani prosedur operasi. Penyebab hernia umbilikalis adalah otot perut yang gagal menutup lubang bekas tali pusar dengan sempurna, sesaat setelah bayi lahir. Kegagalan tersebut dapat menyebabkan hernia umbilikalis pada bayi maupun setelah dewasa.', 'Hernia umbilikalis yang terjadi pada bayi biasanya akan menghilang seiring bertambahnya usia (memasuki usia 1-2 tahun), tanpa memerlukan tindakan pembedahan. Sebagian besar lubang akan menutup dengan sendirinya, namun bila terdapat tanda obstruksi/strangulasi usus, maka harus segera dioperasi.');
+INSERT INTO `tb_penyakit` VALUES ('P02', 'Diare', 'Diare merupakan sebuah kondisi ketika pengidapnya buang air besar (BAB) lebih sering dari biasanya. Selain itu, feses pengidap diare juga lebih encer. Meski diare bisa berlangsung singkat, ada kalanya diare bisa berlangsung selama beberapa hari. Dalam beberapa kasus, diare juga bisa terjadi hingga berminggu-minggu, diare merupakan penyakit kedua yang menyebabkan kematian pada anak-anak balita (bawah lima tahun) setelah pneumonia (WHO , 2013). Diare yang disebabkan oleh infeksi virus dapat sembuh dengan sendirinya dalam beberapa hari. Namun, bayi tetap perlu mendapatkan asupan cairan dan nutrisi yang cukup selama diare.', '1)	Bayi perlu mendapatkan asupan cairan dan nutrisi yang cukup selama diare\r\n2)	Memberikan asi dan cairan elektrolit\r\n3)	Memberikan suplemen zinc\r\n4)	Memberikan probiotik.\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P03', 'Dispnea', 'Sesak nafas, atau yang dalam bahasa medis disebut dispnea, adalah kondisi kesehatan di mana seseorang mengalami kesulitan bernapas. Beberapa orang yang mengalami kondisi ini menggambarkannya sebagai sensasi yang membuat tubuh seakan membutuhkan udara lebih banyak, dada menyempit, serta merasa tidak berdaya. Dispnea atau sesak napas adalah kondisi yang tidak nyaman, bahkan menyakitkan. Biasanya, ini menjadi gejala atau tanda adanya penyakit atau gangguan kesehatan. Frekuensi pernapasan normal pada bayi baru lahir adalah sekitar 40 kali per menit. Ini mungkin melambat hingga 20-40 kali per menit saat bayi sedang tidur. Pola pernapasan pada tiap bayi juga dapat berbeda-beda. Namun, beberapa kondisi dapat menyebabkan perubahan frekuensi dan pola pernapasan yang membuat napas bayi seperti sesak. ', '1)	Kurangi aktivitas anak di luar rumah saat udara sedang panas atau sedang dingin\r\n2)	Ciptakan lingkungan yang sehat untuk pernapasan bayi terutama di dalam rumah\r\n3)	Pastikan seluruh ruangan bebas dari debu, kotoran, polusi, dan asap rokok.\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P04', 'Konstipasi', 'Konstipasi merupakan masalah kesehatan yang umum terjadi pada bayi. Bayi yang mengalami sembelit, jarang buang air besar. Selain itu, feses yang keras dan kering juga bisa dialami bayi yang mengalami sembelit. Salah satu penyebab bayi mengalami sembelit adalah ketika bayi mulai makan makanan padat. Mengetahui frekuensi buang air besar bayi bisa membantu mengidentifikasi apakah bayi mengalami sembelit. Bayi yang mendapat asupan ASI akan lebih sering buang air besar daripada bayi yang diberi susu formula, karena ASI lebih mudah dicerna oleh bayi. Walaupun bayi sering buang air besar atau terlihat berusaha keras mengejan ketika buang air besar, selama feses bayi lunak, maka kemungkinan bayi mengalami konstipasi kecil.', '1)	Pijat perut bayi dengan baby-oil sebagai salah satu cara mengatasi sembelit pada bayi dengan gerakan lembut searah jarum jam\r\n2)	mandi air hangat dapat membantu otot-otot rileks\r\n3)	Gerakkan kaki bayi atau ajak bayi berolahraga seperti sedang bersepeda\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P05', 'Obs Febris', 'Febris adalah istilah kedokteran yang lebih dikenal dengan demam di masyarakat awam, yakni panas suhu tubuh lebih dari 37° C. Diketahui bahwa febris merupakan kondisi yang normal, karena bisa menjadi tanda bahwa tubuh sedang melawan benda asing atau kuman di dalamnya. Febris akan terjadi dengan cepat. Perubahan suhu yang cepat merupakan faktor pemicu kejang. Umumnya, febris akan berlangsung lebih dari 10-14 hari. Demam bisa berarti banyak hal, tetapi kebanyakan demam ringan dan ringan tidak perlu dikhawatirkan. Paling sering, peningkatan suhu tubuh adalah respons normal terhadap infeksi, seperti pilek atau flu.', '1)	Kompres air hangat atau air dingin\r\n2)	Pilih pakaian tipis\r\n3)	Buat kamar anak lebih sejuk\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P06', 'Hordeolum', 'Hordeolum atau bintitan adalah istilah medis dari penyakit bintitan atau dikenal juga dengan sebutan timbilan. Hordeolum adalah benjolan kecil yang sekilas terlihat seperti jerawat atau lepuhan di dekat bulu mata. Penyebab mata bintitan biasanya adalah infeksi bakteri. Secara umum, hordeolum bukan kondisi serius. Biasanya, benjolan akan hilang dengan sendirinya dalam beberapa hari. Hordeolum dapat muncul pada bagian atas, bawah, dalam, luar, maupun tepi kelopak mata anak. Selain menimbulkan rasa sakit, mata bintitan pada anak menyebabkan bengkak, akibat infeksi. Bakteri disebut-sebut sebagai penyebabnya.', '1)	Mengompres kelopak mata dengan air hangat\r\n2)	Mengompres dengan air garam\r\n3)	Membersihkan area sekitar kelopak matanya\r\n4)	Kompres dengan teh hitam\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P07', 'Campak', 'Bayi dan anak-anak menjadi kelompok yang rentan terserang virus penyebab penyakit campak. Penyakit ini terjadi karena serangan virus campak golongan Paramyxovirus. Campak ditandai dengan beberapa gejala yang khas, seperti demam hingga lebih dari 40° C, batuk, muncul ruam di tubuh. Campak pada bayi sama sekali tidak boleh dianggap sepele. Jika tidak ditangani dengan tepat, campak disebut bisa memicu berbagai gangguan kesehatan, bahkan berujung pada hilangnya nyawa. Sejauh ini, cara paling ampuh untuk mencegah penularan penyakit ini adalah dengan vaksin atau imunisasi campak. Bayi dan anak-anak yang mendapat vaksin ini akan lebih terlindungi dari serangan virus penyebab campak. Gangguan kesehatan ini sebenarnya bersifat umum, tetapi bukan berarti boleh diabaikan. Orangtua perlu mengetahui dan mengenal gejala penyakit campak pada bayi. Umumnya, campak ditandai dengan gejala berupa demam. Hal ini menjadi tanda bahwa tengah terjadi infeksi akibat serangan virus di dalam tubuh bayi. Langkah-langkah yang dapat dilakukan untuk mempercepat penyembuhan ', '1)	Istirahatkan bayi dengan cukup\r\n2)	Mengompres mata bayi\r\n3)	Imunisasi campak\r\n');
+INSERT INTO `tb_penyakit` VALUES ('P08', 'Hidrosefalus', 'Hidrosefalus adalah penumpukan cairan di rongga otak, sehingga meningkatkan tekanan pada otak. Pada bayi dan anak-anak, hidrosefalus membuat ukuran kepala membesar. Sedangkan pada orang dewasa, kondisi ini bisa menimbulkan sakit kepala hebat. Cairan otak diproduksi oleh otak secara terus menerus, dan diserap oleh pembuluh darah. Fungsinya sangat penting, antara lain melindungi otak dari cedera, menjaga tekanan pada otak, dan membuang limbah sisa metabolisme dari otak. Hidrosefalus terjadi ketika produksi dan penyerapan cairan otak tidak seimbang. Hidrosefalus dapat dialami oleh siapa saja, tetapi lebih sering dialami oleh bayi dan orang-orang yang berusia 60 tahun ke atas.', 'Operasi pemasangan shunt, shunt merupakan alat khusus berbentuk selang yang dipasangkan oleh ahli bedah ke dalam kepala guna mengalirkan cairan otak ke bagian tubuh lain dan diserap oleh pembuluh darah.');
+INSERT INTO `tb_penyakit` VALUES ('P09', 'Infeksi Sinus', 'Sinus merupakan ruang udara kecil di tulang sekitar hidung. Infeksi pada organ satu ini seringkali terjadi, tak terkecuali infeksi sinus pada bayi. Peradangan yang terjadi bisa menjadi kondisi normal hingga akut, sehingga setiap orangtua sebaiknya mewaspadainya. Infeksi sinus umumnya terlihat setelah pilek, radang alergi atau infeksi saluran pernapasan atas. Namun, peneliti Laboratorium Penelitian Penyakit Alergi Mayo Clinic, Dr. David Sherris mengatakan bahwa penyebab sinusitis kronis sejauh ini belum diketahui, khususnya pada bayi. Gejala yang muncul pada bayi yaitu bayi mengalami bersin-bersin, bayi mengeluarkan cairan atau lendir pada hidung, bengkak disekitar hidung dan mata. Penanganan sinusitis pada bayi dilakukan dengan membawa bayi ke dokter THT (telinga, hidung, dan tenggorokan). Pemeriksaan menyeluruh biasanya mengarah pada diagnosis yang benar. ', 'Operasi pemasangan shunt, shunt merupakan alat khusus berbentuk selang yang dipasangkan oleh ahli bedah ke dalam kepala guna mengalirkan cairan otak ke bagian tubuh lain dan diserap oleh pembuluh darah.');
 
 SET FOREIGN_KEY_CHECKS = 1;

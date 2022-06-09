@@ -44,30 +44,19 @@ if(isset($_SESSION['status']) != 'login'){
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
-                <ul class="navbar-nav mr-lg-2">
-                    <li class="nav-item nav-search d-none d-lg-block" id="menu">
-                        <div class="input-group">
-                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                <span class="input-group-text" id="search">
-                                    <i class="icon-search"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
-                                aria-label="search" aria-describedby="search" onkeyup="prosesMenu()">
-                        </div>
-                    </li>
-                </ul>
+
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                            data-toggle="dropdown">
-                            <i class="icon-bell mx-0"></i>
-                            <span class="count"></span>
-                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                            aria-labelledby="notificationDropdown">
+
+                        </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="images/faces/face28.jpg" alt="profile" />
+                            <i class="icon-cog text-primary"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
@@ -83,11 +72,7 @@ if(isset($_SESSION['status']) != 'login'){
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item nav-settings d-none d-lg-flex">
-                        <a class="nav-link" href="#">
-                            <i class="icon-ellipsis"></i>
-                        </a>
-                    </li>
+
                 </ul>
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
                     data-toggle="offcanvas">
@@ -96,128 +81,84 @@ if(isset($_SESSION['status']) != 'login'){
             </div>
         </nav>
 
+
+        </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_settings-panel.html -->
-            <div class="theme-setting-wrapper">
-                <div id="settings-trigger"><i class="ti-settings"></i></div>
-                <div id="theme-settings" class="settings-panel">
-                    <i class="settings-close ti-close"></i>
-                    <p class="settings-heading">SIDEBAR SKINS</p>
-                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-                        <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
-                    </div>
-                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
-                        <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-                    </div>
-                    <p class="settings-heading mt-2">HEADER SKINS</p>
-                    <div class="color-tiles mx-0 px-4">
-                        <div class="tiles success"></div>
-                        <div class="tiles warning"></div>
-                        <div class="tiles danger"></div>
-                        <div class="tiles info"></div>
-                        <div class="tiles dark"></div>
-                        <div class="tiles default"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="right-sidebar" class="settings-panel">
-                <i class="settings-close ti-close"></i>
-                <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
-            </div>
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
+
             <?php require_once '../template/menu_pakar.php' ?>
             <!-- partial -->
 
 
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Welcome Aamir</h3>
-                                    <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
-                                </div>
-                                <div class="col-12 col-xl-4">
-                                    <div class="justify-content-end d-flex">
-                                        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                            <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button"
-                                                id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="true">
-                                                <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right"
-                                                aria-labelledby="dropdownMenuDate2">
-                                                <a class="dropdown-item" href="#">January - March</a>
-                                                <a class="dropdown-item" href="#">March - June</a>
-                                                <a class="dropdown-item" href="#">June - August</a>
-                                                <a class="dropdown-item" href="#">August - November</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                    <?php
+                          require_once "../class/class_gejala.php";
+                        ?>
+
+                    <div class="page-content">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+                            <div>
+                                <h4 class="mb-3 mb-md-0"></h4>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="../login/assets/images/bay.png" alt="people">
-                                    <div class="weather-info">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h2 class="mb-0 font-weight-normal"><i
-                                                        class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+
+                        <div class="row">
+
+                            <div class="col-12 col-xl-12 stretch-card">
+                                <div class="row flex-grow-1">
+                                    <div class="col-md-4 grid-margin stretch-card">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-baseline">
+                                                    <h6 class="card-title mb-0">Total Gejala</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 col-md-12 col-xl-5">
+                                                        <h3 class="mb-2">
+                                                            <br><?php echo $gejala->Tampilcard("tb_gejala")?>
+                                                        </h3>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="ml-2">
-                                                <h4 class="location font-weight-normal">Bangalore</h4>
-                                                <h6 class="font-weight-normal">India</h6>
+                                        </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4 grid-margin stretch-card">
+                                        <div class="card">
+
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-baseline">
+                                                    <h6 class="card-title mb-0">Total Penyakit</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 col-md-12 col-xl-5">
+                                                        <h3 class="mb-2">
+                                                            <br> <?php echo $gejala->Tampilcard("tb_penyakit")?></p>
+                                                        </h3>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 grid-margin transparent">
-                            <div class="row">
-                                <div class="col-md-6 mb-4 stretch-card transparent">
-                                    <div class="card card-tale">
-                                        <div class="card-body">
-                                            <p class="mb-4">Today’s Bookings</p>
-                                            <p class="fs-30 mb-2">4006</p>
-                                            <p>10.00% (30 days)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4 stretch-card transparent">
-                                    <div class="card card-dark-blue">
-                                        <div class="card-body">
-                                            <p class="mb-4">Total Bookings</p>
-                                            <p class="fs-30 mb-2">61344</p>
-                                            <p>22.00% (30 days)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                                    <div class="card card-light-blue">
-                                        <div class="card-body">
-                                            <p class="mb-4">Number of Meetings</p>
-                                            <p class="fs-30 mb-2">34040</p>
-                                            <p>2.00% (30 days)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 stretch-card transparent">
-                                    <div class="card card-light-danger">
-                                        <div class="card-body">
-                                            <p class="mb-4">Number of Clients</p>
-                                            <p class="fs-30 mb-2">47033</p>
-                                            <p>0.22% (30 days)</p>
+                                    <div class="col-md-4 grid-margin stretch-card">
+                                        <div class="card">
+
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-baseline">
+                                                    <h6 class="card-title mb-0">Total Konsultasi</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6 col-md-12 col-xl-5">
+                                                        <h3 class="mb-2">
+                                                            <br> <?php echo $gejala->Tampilcard("tb_konsul")?>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

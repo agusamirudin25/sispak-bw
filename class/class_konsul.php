@@ -6,11 +6,10 @@ require_once 'koneksi.php';
 class konsul extends koneksi {
 
     //Tambah Konsultasi
-    public function Tambahkonsul($id_user, $nama, $pesan, $tujuan, $waktu){
+    public function Tambahkonsul($username, $pesan, $tujuan, $waktu){
         try{
-            $tambahkonsul = $this->db->prepare("INSERT INTO tb_konsul (id_user, nama, pesan, tujuan, waktu) VALUES(:id_user,:nama,:pesan,:tujuan,:waktu)");
-            $tambahkonsul->bindParam(":id_user",$id_user);
-            $tambahkonsul->bindParam(":nama",$nama);
+            $tambahkonsul = $this->db->prepare("INSERT INTO tb_konsul (username, pesan, tujuan, waktu) VALUES(:username,:pesan,:tujuan,:waktu)");
+            $tambahkonsul->bindParam(":username",$username);
             $tambahkonsul->bindParam(":pesan",$pesan);
             $tambahkonsul->bindParam(":tujuan",$tujuan);
             $tambahkonsul->bindParam(":waktu",$waktu);
@@ -22,7 +21,7 @@ class konsul extends koneksi {
 Swal.fire({
 
     icon: 'success',
-    title: 'Data Berhasil Disimpan',
+    title: 'Pesan Berhasil Terkirim',
     showConfirmButton: false,
     timer: 1500
 }).then((result) => {
@@ -36,7 +35,7 @@ Swal.fire({
 Swal.fire({
 
     icon: 'success',
-    title: 'Data Berhasil Disimpan',
+    title: 'Pesan Berhasil Terkirim',
     showConfirmButton: false,
     timer: 1500
 }).then((result) => {
@@ -119,6 +118,18 @@ Swal.fire({
         }
     }
 
+ //Tampil Hitung Gejala Pada Halaman Admin
+ public function Tampilcard($total){
+    $query="SELECT COUNT(*) AS total FROM $total";
+    $card = $this->db->prepare($query);
+    $card->execute();
+
+while($row=$card->fetch(PDO::FETCH_ASSOC)){
+    $count=$row['total'];
+    return $count;
+}
+}
+    
     //Tampil Pakar
     public function Tampilpakar($query){
         $query = $this->db->prepare($query);
@@ -126,7 +137,7 @@ Swal.fire({
 
         while($row = $query->fetch(PDO::FETCH_ASSOC)){
 ?>
-<a href="../view/pakarkonsul.php?id=<?php echo $row['id_user'] ?>">
+<a href="../view/pakarkonsul.php?id=<?php echo $row['username'] ?>">
     <li class="clearfix">
         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
         <div class="about">

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login V1</title>
+    <title>SIMAHIR</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -64,7 +64,7 @@
                         Login
                     </span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <div class="wrap-input100 validate-input" data-validate="Username harus di isi">
                         <input class="input100" type="text" name="username" placeholder="Username">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -72,7 +72,7 @@
                         </span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <div class="wrap-input100 validate-input" data-validate="Password harus di isi">
                         <input class="input100" type="password" name="password" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -106,10 +106,10 @@
             </div>
         </div>
     </div>
-    <footer class="text-center text-lg-start "
+    <footer class="text-center text-white"
         style=" width: 100%; height: 50px; padding-left: 10px; line-height: 50px;position: absolute;bottom: 0px;">
-        © 2022 Copyright:
-        <a class="text-reset fw-bold" href="../view/profil.php" style="color:black;">Alvin Supriyan</a>
+        © 2022 Copyright :
+        <a class="text-reset fw-bold" href="../view/profil.php" style="color:white;">Alvin Supriyan</a>
     </footer>
 
     <script type="text/javascript">

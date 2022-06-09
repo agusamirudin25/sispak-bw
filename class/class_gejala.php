@@ -56,9 +56,9 @@ Swal.fire({
 
     <td>
         <center>
-            <a href="tb_gejala_edit.php?id=<?php echo $row['id'] ?>" class='btn btn-warning'><span
+            <a href="tb_gejala_edit.php?id=<?php echo $row['kode_gejala'] ?>" class='btn btn-warning'><span
                     class='bi bi-pen'></span>Edit</a>
-            <a class="hapus_gejala btn btn-danger" id="<?php echo $row['id'] ?>">Hapus</a>
+            <a class="hapus_gejala btn btn-danger" id="<?php echo $row['kode_gejala'] ?>">Hapus</a>
         </center>
     </td>
 </tr>
@@ -69,16 +69,15 @@ Swal.fire({
 
 
     //Edit Gejala
-    public function Editgejala($id,$kode_gejala,$nama_gejala){
+    public function Editgejala($kode_gejala,$nama_gejala){
 
     try{
         $data = [
-            'id'=>$id,
             'kode_gejala'=>$kode_gejala,
             'nama_gejala'=>$nama_gejala,
         ];
 
-        $editgejala = $this->db->prepare("UPDATE tb_gejala SET kode_gejala=:kode_gejala,nama_gejala=:nama_gejala WHERE id = :id");
+        $editgejala = $this->db->prepare("UPDATE tb_gejala SET nama_gejala=:nama_gejala WHERE kode_gejala=:kode_gejala");
         if($editgejala->execute($data)){
             echo "<script>windows.location.href='../view/tb_gejala.php?updates=update';</script>";
             return true;
@@ -111,7 +110,7 @@ Swal.fire({
 
     //Hapus Gejala
     public function hapusgejala($id){
-        $hapusgejala = $this->db->prepare("DELETE FROM tb_gejala where id=$id");
+        $hapusgejala = $this->db->prepare("DELETE FROM tb_gejala where kode_gejala = '{$id}'");
         $hapusgejala->execute();
         return true;
 }

@@ -20,7 +20,9 @@ if (isset($_SESSION['status']) != 'login') {
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="../template/css/vertical-layout-light/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- endinject -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -34,57 +36,57 @@ if (isset($_SESSION['status']) != 'login') {
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="../template/indexuser.php"><img src="../template/images/logo.png" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../template/indexuser.php"><img src="../template/images/logo2.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="../template/indexpakar.php"><img
+                        src="../template/images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../template/indexpakar.php"><img
+                        src="../template/images/logo2.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
-                <ul class="navbar-nav mr-lg-2">
-                    <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                <span class="input-group-text" id="search">
-                                    <i class="icon-search"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown">
+
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                            aria-labelledby="notificationDropdown">
+
                         </div>
                     </li>
+                    <li class="nav-item nav-profile dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            <i class="icon-cog text-primary"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
+                            <a class="dropdown-item">
+                                <i class="icon-head text-primary"></i>
+                                <?php echo $_SESSION['username'];?>
+                            </a>
+                            <a class="dropdown-item">
+                                <p class="logout">
+                                    <i class="ti-power-off text-primary"></i>
+                                    Logout
+                                </p>
+                            </a>
+                        </div>
+                    </li>
+
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
                     <span class="icon-menu"></span>
                 </button>
             </div>
         </nav>
+
+
+        </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_settings-panel.html -->
-            <div class="theme-setting-wrapper">
-                <div id="settings-trigger"><i class="ti-settings"></i></div>
-                <div id="theme-settings" class="settings-panel">
-                    <i class="settings-close ti-close"></i>
-                    <p class="settings-heading">SIDEBAR SKINS</p>
-                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-                        <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
-                    </div>
-                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
-                        <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-                    </div>
-                    <p class="settings-heading mt-2">HEADER SKINS</p>
-                    <div class="color-tiles mx-0 px-4">
-                        <div class="tiles success"></div>
-                        <div class="tiles warning"></div>
-                        <div class="tiles danger"></div>
-                        <div class="tiles info"></div>
-                        <div class="tiles dark"></div>
-                        <div class="tiles default"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- partial -->
-            <!-- partial:../../partials/_sidebar.html -->
+
             <?php require_once '../template/menu_pakar.php' ?>
 
             <!-- partial -->
@@ -102,12 +104,15 @@ if (isset($_SESSION['status']) != 'login') {
                                     </center>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pengetahuan</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Tambah
+                                                        Pengetahuan</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -134,25 +139,33 @@ if (isset($_SESSION['status']) != 'login') {
                                                     <form method="POST">
                                                         <div class="form-group">
                                                             <label>Penyakit</label>
-                                                            <select class="w-100 form-control" name="penyakit" id="penyakit" required>
+                                                            <select class="w-100 form-control" name="penyakit"
+                                                                id="penyakit" required>
                                                                 <option value="">Pilih Penyakit</option>
                                                                 <?php foreach ($dataPenyakit as $penyakit) : ?>
-                                                                    <option value="<?= $penyakit['kode_penyakit'] ?>"><?= "({$penyakit['kode_penyakit']}) {$penyakit['nama_penyakit']}" ?></option>
+                                                                <option value="<?= $penyakit['kode_penyakit'] ?>">
+                                                                    <?= "({$penyakit['kode_penyakit']}) {$penyakit['nama_penyakit']}" ?>
+                                                                </option>
                                                                 <?php endforeach; ?>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1">Gejala</label>
-                                                            <select class="w-100 form-control" name="gejala" id="gejala" required>
-                                                            <option value="">Pilih Gejala</option>
+                                                            <select class="w-100 form-control" name="gejala" id="gejala"
+                                                                required>
+                                                                <option value="">Pilih Gejala</option>
                                                                 <?php foreach ($dataGejala as $gejala) : ?>
-                                                                    <option value="<?= $gejala['kode_gejala'] ?>"><?= "({$gejala['kode_gejala']}) {$gejala['nama_gejala']}" ?></option>
+                                                                <option value="<?= $gejala['kode_gejala'] ?>">
+                                                                    <?= "({$gejala['kode_gejala']}) {$gejala['nama_gejala']}" ?>
+                                                                </option>
                                                                 <?php endforeach; ?>
                                                             </select>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary"
+                                                                name="simpan">Simpan</button>
                                                         </div>
                                                     </form>
 
@@ -166,12 +179,14 @@ if (isset($_SESSION['status']) != 'login') {
                                     </p>
                                     <div class="row justify-content-between">
                                         <div class="col-4">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#exampleModal">
                                                 Tambah Pengetahuan
                                             </button>
                                         </div>
                                         <div class="col-4">
-                                            <input class="form-control" placeholder="Cari" type='text' id='input' onkeyup='searchTable()'>
+                                            <input class="form-control" placeholder="Cari" type='text' id='input'
+                                                onkeyup='searchTable()'>
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -190,7 +205,7 @@ if (isset($_SESSION['status']) != 'login') {
 
                                             <?php
                                             require_once '../class/class_basis_pengetahuan.php';
-                                            $query = "SELECT tb_pengetahuan.*, tb_gejala.nama_gejala, tb_penyakit.nama_penyakit FROM tb_pengetahuan JOIN tb_gejala ON tb_pengetahuan.kode_gejala = tb_gejala.kode_gejala JOIN tb_penyakit ON tb_pengetahuan.kode_penyakit = tb_penyakit.kode_penyakit";
+                                            $query = "SELECT tb_pengetahuan.*, tb_gejala.nama_gejala, tb_penyakit.nama_penyakit FROM tb_pengetahuan JOIN tb_gejala ON tb_pengetahuan.kode_gejala = tb_gejala.kode_gejala JOIN tb_penyakit ON tb_pengetahuan.kode_penyakit = tb_penyakit.kode_penyakit ORDER BY tb_pengetahuan.id_pengetahuan DESC";
                                             $pengetahuan->Tampilpengetahuan($query);
                                             ?>
 
@@ -233,37 +248,37 @@ if (isset($_SESSION['status']) != 'login') {
         <script src="../template/vendors/select2/select2.min.js"></script>
         <!-- endinject -->
         <script>
-            function searchTable() {
-                var input;
-                var saring;
-                var status;
-                var tbody;
-                var tr;
-                var td;
-                var i;
-                var j;
-                input = document.getElementById("input");
-                saring = input.value.toUpperCase();
-                tbody = document.getElementsByTagName("tbody")[0];;
-                tr = tbody.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td");
-                    for (j = 0; j < td.length; j++) {
-                        if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
-                            status = true;
-                        }
-                    }
-                    if (status) {
-                        tr[i].style.display = "";
-                        status = false;
-                    } else {
-                        tr[i].style.display = "none";
+        function searchTable() {
+            var input;
+            var saring;
+            var status;
+            var tbody;
+            var tr;
+            var td;
+            var i;
+            var j;
+            input = document.getElementById("input");
+            saring = input.value.toUpperCase();
+            tbody = document.getElementsByTagName("tbody")[0];;
+            tr = tbody.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
+                        status = true;
                     }
                 }
+                if (status) {
+                    tr[i].style.display = "";
+                    status = false;
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
-            if ($(".js-example-basic-single").length) {
-                $(".js-example-basic-single").select2();
-            }
+        }
+        if ($(".js-example-basic-single").length) {
+            $(".js-example-basic-single").select2();
+        }
         </script>
         <script src="../template/js/logout.js"></script>
 </body>

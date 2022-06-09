@@ -39,80 +39,25 @@ if(isset($_SESSION['status']) != 'login'){
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
-                <ul class="navbar-nav mr-lg-2">
-                    <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                <span class="input-group-text" id="search">
-                                    <i class="icon-search"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
-                                aria-label="search" aria-describedby="search">
-                        </div>
-                    </li>
-                </ul>
+
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                            data-toggle="dropdown">
-                            <i class="icon-bell mx-0"></i>
-                            <span class="count"></span>
-                        </a>
+
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
                             aria-labelledby="notificationDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="ti-info-alt mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="ti-settings mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Private message
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="ti-user mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        2 days ago
-                                    </p>
-                                </div>
-                            </a>
+
                         </div>
                     </li>
-
                     <li class="nav-item nav-profile dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <i class="icon-ellipsis"></i>
+                            <i class="icon-cog text-primary"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
                             <a class="dropdown-item">
-                                <i class="ti-settings text-primary"></i>
-                                Settings
+                                <i class="icon-head text-primary"></i>
+                                <?php echo $_SESSION['username'];?>
                             </a>
                             <a class="dropdown-item">
                                 <p class="logout">
@@ -123,46 +68,18 @@ if(isset($_SESSION['status']) != 'login'){
                         </div>
                     </li>
 
-                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                        data-toggle="offcanvas">
-                        <span class="icon-menu"></span>
-                    </button>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
             </div>
         </nav>
+
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_settings-panel.html -->
-            <div class="theme-setting-wrapper">
-                <div id="settings-trigger"><i class="ti-settings"></i></div>
-                <div id="theme-settings" class="settings-panel">
-                    <i class="settings-close ti-close"></i>
-                    <p class="settings-heading">SIDEBAR SKINS</p>
-                    <div class="sidebar-bg-options selected" id="sidebar-light-theme">
-                        <div class="img-ss rounded-circle bg-light border mr-3"></div>Light
-                    </div>
-                    <div class="sidebar-bg-options" id="sidebar-dark-theme">
-                        <div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark
-                    </div>
-                    <p class="settings-heading mt-2">HEADER SKINS</p>
-                    <div class="color-tiles mx-0 px-4">
-                        <div class="tiles success"></div>
-                        <div class="tiles warning"></div>
-                        <div class="tiles danger"></div>
-                        <div class="tiles info"></div>
-                        <div class="tiles dark"></div>
-                        <div class="tiles default"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="right-sidebar" class="settings-panel">
-                <div class="tab-content" id="setting-content">
-                    <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
-                        aria-labelledby="todo-section">
-                    </div>
 
-                    <!-- chat tab ends -->
-                </div>
-            </div>
+
             <!-- partial -->
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -182,8 +99,10 @@ if(isset($_SESSION['status']) != 'login'){
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="tb_gejala.php">Kelola Gejala</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="tb_penyakit.php">Kelola
+                                <li class="nav-item"> <a class="nav-link" href="tb_gejala.php">Kelola Data <br>
+                                        Gejala</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="tb_penyakit.php">Kelola Data <br>
                                         Penyakit</a></li>
 
                             </ul>
@@ -205,28 +124,6 @@ if(isset($_SESSION['status']) != 'login'){
                         </div>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
-                            aria-controls="error">
-                            <i class="icon-ban menu-icon"></i>
-                            <span class="menu-title">Error pages</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="error">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../template/pages/samples/error-404.html"> 404 </a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../template/pages/samples/error-500.html"> 500 </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../template/pages/documentation/documentation.html">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Documentation</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
 
@@ -297,9 +194,9 @@ if(isset($_SESSION['status']) != 'login'){
                                                                 if(isset($kode_gejala)){
                                                                
                                                                 $kd1=(int)$count+1;
-                                                                $kd2="G".$kd1;
+                                                                $kd2="G0".$kd1;
                                                                 }else{
-                                                                $kd2='G1';
+                                                                $kd2='G01';
                                                                 }
                                                             ?>
 
@@ -378,15 +275,19 @@ if(isset($_SESSION['status']) != 'login'){
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- partial -->
-                    <!-- content-wrapper ends -->
-                    <!-- partial:../../partials/_footer.html -->
                     <footer class="footer">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between"></div>
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
+                                © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin
+                                    template</a>
+                                from
+                                BootstrapDash. All rights reserved.</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted
+                                & made with <i class="ti-heart text-danger ml-1"></i></span>
+                        </div>
                     </footer>
-                    <!-- partial -->
+
+
                 </div>
                 <!-- main-panel ends -->
             </div>

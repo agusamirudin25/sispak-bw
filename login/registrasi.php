@@ -58,11 +58,11 @@ if (isset($_POST['simpan'])){
 
   $nama = $_POST['nama'];
   $username = $_POST['username'];
-  $email = $_POST['email'];
+ 
   $password = $_POST['password'];
   $hak_akses = 'user';
 
-  $pengguna->Tambahpengguna($nama, $username, $email, $password, $hak_akses);
+  $pengguna->Tambahpengguna($nama, $username, $password, $hak_akses);
 }
 ?>
                     <form class="pt-3" method="POST">
@@ -70,22 +70,22 @@ if (isset($_POST['simpan'])){
                             Registrasi
                         </span>
 
-                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                            <input class="input100" type="text" name="nama" placeholder="Masukkan Nama Lengkap">
+                        <div class="wrap-input100 validate-input" data-validate="Nama Lengkap harus di isi">
+                            <input class="input100" type="text" name="nama" placeholder="Nama Lengkap">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                            <input class="input100" type="text" name="username" placeholder="Masukkan Username">
+                        <div class="wrap-input100 validate-input" data-validate="Username harus di isi">
+                            <input class="input100" type="text" name="username" placeholder="Username">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <div class="wrap-input100 validate-input" data-validate="Password is required">
-                            <input class="input100" type="password" name="password" placeholder="Masukkan MPassword">
+                        <div class="wrap-input100 validate-input" data-validate="Password harus di isi">
+                            <input class="input100" type="password" name="password" placeholder="Password">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>

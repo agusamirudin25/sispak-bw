@@ -6,9 +6,9 @@ require_once 'koneksi.php';
 class pengguna extends koneksi {
 
     //Tambah Pengguna
-    public function Tambahpengguna($nama, $username, $email, $password, $hak_akses){
+    public function Tambahpengguna($nama, $username, $password, $hak_akses){
         try{
-            $tambahpengguna = $this->db->prepare("INSERT INTO tb_login (nama, username, password, hak_akses) VALUES(:nama,:username,:password,:hak_akses)");
+            $tambahpengguna = $this->db->prepare("INSERT INTO tb_login (nama, username, `password`, hak_akses) VALUES(:nama,:username,:password,:hak_akses)");
             $tambahpengguna->bindParam(":nama",$nama);
             $tambahpengguna->bindParam(":username",$username);
     
@@ -76,9 +76,9 @@ Swal.fire({
 
     <td>
         <center>
-            <a href="pengguna_edit.php?id=<?php echo $row['id'] ?>" class='btn btn-warning'><span
+            <a href="pengguna_edit.php?id=<?php echo $row['username'] ?>" class='btn btn-warning'><span
                     class='bi bi-pen'></span>Edit</a>
-            <a class="del_pengguna btn btn-danger" id="<?php echo "{$row['id']}" ?>">Hapus</a>
+            <a class="del_pengguna btn btn-danger" id="<?php echo "{$row['username']}" ?>">Hapus</a>
         </center>
     </td>
 </tr>
@@ -88,19 +88,17 @@ Swal.fire({
 
     
     //Edit Pengguna
-    public function Editpengguna($id, $nama, $username, $password, $hak_akses){
+    public function Editpengguna($nama, $username, $password, $hak_akses){
 
         try{
             $data = [
-                'id'=>$id,
                 'nama'=>$nama,
                 'username'=>$username,
-           
                 'password'=>$password,
                 'hak_akses'=>$hak_akses,
             ];
 
-            $editpengguna = $this->db->prepare("UPDATE tb_login SET nama=:nama,username=:username,password=:password,hak_akses=:hak_akses WHERE id = :id");
+            $editpengguna = $this->db->prepare("UPDATE tb_login SET nama=:nama,username=:username,password=:password,hak_akses=:hak_akses WHERE username=:username");
 
             if($editpengguna->execute($data)){
                 echo "<script>windows.location.href='class_pengguna.php?update=update';</script>";
@@ -132,7 +130,7 @@ Swal.fire({
 
     //Hapus
     public function hapuspengguna($id){
-        $hapuspengguna = $this->db->prepare("DELETE FROM tb_login where id='$id'");
+        $hapuspengguna = $this->db->prepare("DELETE FROM tb_login where username='{$id}'");
         $hapuspengguna->execute();
         return true;
     }

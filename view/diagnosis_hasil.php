@@ -22,32 +22,35 @@ if (isset($_SESSION['status']) != 'login') {
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="../template/css/vertical-layout-light/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- endinject -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="../template/images/favicon.png" />
     <style>
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            #section-to-print,
-            #section-to-print * {
-                visibility: visible;
-            }
-
-            #section-to-print {
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
-
-            #btn-cetak, #btn-back{
-                visibility: hidden !important;
-            }
+    @media print {
+        body * {
+            visibility: hidden;
         }
+
+        #section-to-print,
+        #section-to-print * {
+            visibility: visible;
+        }
+
+        #section-to-print {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #btn-cetak,
+        #btn-back {
+            visibility: hidden !important;
+        }
+    }
     </style>
 </head>
 
@@ -56,82 +59,34 @@ if (isset($_SESSION['status']) != 'login') {
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="../template/indexuser.php"><img src="../template/images/logo.png" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../template/indexuser.php"><img src="../template/images/logo.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="../template/indexuser.php"><img
+                        src="../template/images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../template/indexuser.php"><img
+                        src="../template/images/logo.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
-                <ul class="navbar-nav mr-lg-2">
-                    <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                <span class="input-group-text" id="search">
-                                    <i class="icon-search"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-                        </div>
-                    </li>
-                </ul>
+
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                            <i class="icon-bell mx-0"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="ti-info-alt mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="ti-settings mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Private message
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="ti-user mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        2 days ago
-                                    </p>
-                                </div>
-                            </a>
+
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                            aria-labelledby="notificationDropdown">
+
                         </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
+
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="../template/images/faces/face28.jpg" alt="profile" />
+                            <i class="icon-cog text-primary"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
                             <a class="dropdown-item">
-                                <i class="ti-settings text-primary"></i>
-                                Settings
+                                <i class="icon-head text-primary"></i>
+                                <?php echo $_SESSION['username'];?>
                             </a>
                             <a class="dropdown-item">
                                 <p class="logout">
@@ -141,15 +96,9 @@ if (isset($_SESSION['status']) != 'login') {
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item nav-settings d-none d-lg-flex">
-                        <a class="nav-link" href="#">
-                            <i class="icon-ellipsis"></i>
-                        </a>
-                    </li>
+
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                    <span class="icon-menu"></span>
-                </button>
+
             </div>
         </nav>
         <!-- partial -->
@@ -164,7 +113,15 @@ if (isset($_SESSION['status']) != 'login') {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="keterangan_penyakit.php">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Keterangan Penyakit</span>
+
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="diagnosis.php">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Diagnosa</span>
 
@@ -179,12 +136,7 @@ if (isset($_SESSION['status']) != 'login') {
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="../template/pages/documentation/documentation.html">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Documentation</span>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
 
@@ -229,12 +181,7 @@ if (isset($_SESSION['status']) != 'login') {
                 </div>
 
 
-                <!-- partial:../../partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
 
-                    </div>
-                </footer>
                 <!-- partial -->
             </div>
             <!-- main-panel ends -->
@@ -258,37 +205,37 @@ if (isset($_SESSION['status']) != 'login') {
     <script src="../template/js/todolist.js"></script>
     <!-- endinject -->
     <script>
-        function searchTable() {
-            var input;
-            var saring;
-            var status;
-            var tbody;
-            var tr;
-            var td;
-            var i;
-            var j;
-            input = document.getElementById("input");
-            saring = input.value.toUpperCase();
-            tbody = document.getElementsByTagName("tbody")[0];;
-            tr = tbody.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
-                        status = true;
-                    }
-                }
-                if (status) {
-                    tr[i].style.display = "";
-                    status = false;
-                } else {
-                    tr[i].style.display = "none";
+    function searchTable() {
+        var input;
+        var saring;
+        var status;
+        var tbody;
+        var tr;
+        var td;
+        var i;
+        var j;
+        input = document.getElementById("input");
+        saring = input.value.toUpperCase();
+        tbody = document.getElementsByTagName("tbody")[0];;
+        tr = tbody.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
+                    status = true;
                 }
             }
+            if (status) {
+                tr[i].style.display = "";
+                status = false;
+            } else {
+                tr[i].style.display = "none";
+            }
         }
-        const cetakHasil = () => {
-            window.print();
-        }
+    }
+    const cetakHasil = () => {
+        window.print();
+    }
     </script>
     <script src="../template/js/logout.js"></script>
 </body>

@@ -11,41 +11,42 @@ class diagnosis extends koneksi
         $result = $this->db->prepare($query);
         $result->execute();
 ?>
-        <form action="../view/diagnosis_hasil.php" method="post">
-            <input type="hidden" name="kode_penyakit" id="kode_penyakit" value="<?= $kode_penyakit ?>">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Pilih Gejala</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <?php
+<form action="../view/diagnosis_hasil.php" method="post">
+    <input type="hidden" name="kode_penyakit" id="kode_penyakit" value="<?= $kode_penyakit ?>">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Pilih Gejala</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <?php
                                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) :
                                     $gejala = strtolower($row['nama_gejala']);
                                 ?>
-                                    <div class="col-md-12">
-                                        <div class="form-group mb-0">
-                                            <div class="form-check form-check-success">
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" name="gejala[]" value="<?= $row['kode_gejala'] ?>" class="form-check-input">
-                                                    <?= "Apakah {$gejala} ?" ?>
-                                                    <i class="input-helper"></i></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endwhile; ?>
-                                <div class="col-md-12 mt-4">
-                                    <button type="submit" name="diagnosa" class="btn btn-primary">Diagnosa</button>
+                        <div class="col-md-12">
+                            <div class="form-group mb-0">
+                                <div class="form-check form-check-success">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="gejala[]" value="<?= $row['kode_gejala'] ?>"
+                                            class="form-check-input">
+                                        <?= "Apakah {$gejala} ?" ?>
+                                        <i class="input-helper"></i></label>
                                 </div>
                             </div>
+                        </div>
+                        <?php endwhile; ?>
+                        <div class="col-md-12 mt-4">
+                            <button type="submit" name="diagnosa" class="btn btn-primary">Diagnosa</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
-    <?php
+        </div>
+    </div>
+</form>
+<?php
     }
 
     public function hasilDiagnosis($kode_gejala, $kode_penyakit)
@@ -67,56 +68,55 @@ class diagnosis extends koneksi
         $result_diagnosa = $this->db->prepare($query_diagnosa);
         $result_diagnosa->execute();
     ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title">Hasil Diagnosa</h3>
-                        <button class="btn btn-primary" id="btn-cetak" onclick="cetakHasil()">Cetak</button>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Hasil Diagnosa</h3>
+                <button class="btn btn-primary" id="btn-cetak" onclick="cetakHasil()">Cetak</button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Gejala yang dipilih :</h4>
+                        <ul>
+                            <?php foreach ($gejala as $g) : ?>
+                            <li><?= $g['nama_gejala'] ?></li>
+                            <?php endforeach; ?>
+                        </ul>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4>Gejala yang dipilih :</h4>
-                                <ul>
-                                    <?php foreach ($gejala as $g) : ?>
-                                        <li><?= $g['nama_gejala'] ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-0">
-                                    <label>Kode Penyakit</label>
-                                    <input type="text" class="form-control" value="<?= $row['kode_penyakit'] ?>" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-0">
-                                    <label>Nama Penyakit</label>
-                                    <input type="text" class="form-control" value="<?= $row['nama_penyakit'] ?>" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-0">
-                                    <label>Keterangan Penyakit</label>
-                                    <textarea class="form-control" rows="6" readonly><?= $row['pengertian'] ?></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-0">
-                                    <label>Solusi</label>
-                                    <textarea class="form-control" rows="6" readonly><?= $row['solusi'] ?></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mt-3">
-                                <a href="../view/diagnosis.php" class="btn btn-warning text-white" id="btn-back">Kembali</a>
-                            </div>
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Kode Penyakit</label>
+                            <input type="text" class="form-control" value="<?= $row['kode_penyakit'] ?>" readonly>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Nama Penyakit</label>
+                            <input type="text" class="form-control" value="<?= $row['nama_penyakit'] ?>" readonly>
+                        </div>
+                    </div>
+                    <!-- 
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Keterangan Penyakit</label>
+                            <textarea class="form-control" rows="6" readonly><?= $row['pengertian'] ?></textarea>
+                        </div>
+                    </div> -->
+
+
+
+                </div>
+                <div class="col-md-12 mt-3">
+                    <a href="../view/diagnosis.php" class="btn btn-warning text-white" id="btn-back">Kembali</a>
                 </div>
             </div>
         </div>
-        <?php
+    </div>
+</div>
+</div>
+<?php
     }
 
     public function tampilPenyakit()
@@ -131,36 +131,37 @@ class diagnosis extends koneksi
             $this->tampilgejala($kode_penyakit);
         else :
         ?>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Pilih Penyakit</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form method="GET">
-                                        <div class="form-group">
-                                            <label>Penyakit</label>
-                                            <select class="w-100 form-control" name="penyakit" id="penyakit" required>
-                                                <option value="">Pilih Penyakit</option>
-                                                <?php foreach ($dataPenyakit as $penyakit) : ?>
-                                                    <option value="<?= $penyakit['kode_penyakit'] ?>"><?= "{$penyakit['nama_penyakit']}" ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary" name="proses">Proses</button>
-                                        </div>
-                                    </form>
-                                </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Pilih Penyakit</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="GET">
+                            <div class="form-group">
+                                <label>Penyakit</label>
+                                <select class="w-100 form-control" name="penyakit" id="penyakit" required>
+                                    <option value="">Pilih Penyakit</option>
+                                    <?php foreach ($dataPenyakit as $penyakit) : ?>
+                                    <option value="<?= $penyakit['kode_penyakit'] ?>">
+                                        <?= "{$penyakit['nama_penyakit']}" ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" name="proses">Proses</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        <?php
+        </div>
+    </div>
+</div>
+<?php
         endif;
     }
 }

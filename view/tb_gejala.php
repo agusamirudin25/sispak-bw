@@ -194,7 +194,7 @@ if(isset($_SESSION['status']) != 'login'){
                                                                 if(isset($kode_gejala)){
                                                                
                                                                 $kd1=(int)$count+1;
-                                                                $kd2="G0".$kd1;
+                                                                $kd2="G".$kd1;
                                                                 }else{
                                                                 $kd2='G01';
                                                                 }

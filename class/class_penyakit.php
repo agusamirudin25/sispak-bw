@@ -10,11 +10,32 @@ class penyakit extends koneksi
     public function Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit)
     {
         try {
-            $insertpenyakit = $this->db->prepare("INSERT INTO tb_penyakit(kode_penyakit,nama_penyakit,solusi, keterangan_penyakit) VALUES(:kode_penyakit,:nama_penyakit,:solusi, :keterangan_penyakit)");
+            // uplod foto
+            $target_dir = "../foto/";
+            $ext = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
+            $target_file = $target_dir . basename($nama_penyakit . "." . $ext);
+          
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                echo "The file " . basename($_FILES["foto"]["name"]) . " has been uploaded.";
+                $foto = basename($nama_penyakit . "." . $ext);
+            } else {
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Gagal upload foto!',
+                })
+                </script>
+                ";
+                return false;
+            }
+            $insertpenyakit = $this->db->prepare("INSERT INTO tb_penyakit(kode_penyakit,nama_penyakit,solusi, foto, keterangan_penyakit) VALUES(:kode_penyakit,:nama_penyakit,:solusi, :foto, :keterangan_penyakit)");
 
             $insertpenyakit->bindParam(":kode_penyakit", $kode_penyakit);
             $insertpenyakit->bindParam(":nama_penyakit", $nama_penyakit);
             $insertpenyakit->bindParam(":keterangan_penyakit", $keterangan_penyakit);
+            $insertpenyakit->bindParam(":foto", $foto);
             $insertpenyakit->bindParam(":solusi", $solusi);
 
             if ($insertpenyakit->execute()) {
@@ -74,16 +95,40 @@ Swal.fire({
     //Edit Penyakit
     public function Editpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit)
     {
-
+       
         try {
+            if(isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != ""){
+                // uplod foto
+                $target_dir = "../foto/";
+                $ext = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
+                $target_file = $target_dir . basename($nama_penyakit . "." . $ext);
+              
+                if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                    $foto = basename($nama_penyakit . "." . $ext);
+                } else {
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Gagal upload foto!',
+                    })
+                    </script>
+                    ";
+                    return false;
+                }
+            }else{
+                $foto = $_POST['foto_lama'];
+            }
             $data = [
                 'kode_penyakit' => $kode_penyakit,
                 'nama_penyakit' => $nama_penyakit,
                 'solusi' => $solusi,
-                'keterangan_penyakit' => $keterangan_penyakit
+                'keterangan_penyakit' => $keterangan_penyakit,
+                'foto' => $foto
             ];
 
-            $editpenyakit = $this->db->prepare("UPDATE tb_penyakit SET nama_penyakit=:nama_penyakit,solusi=:solusi,keterangan_penyakit=:keterangan_penyakit WHERE kode_penyakit = :kode_penyakit");
+            $editpenyakit = $this->db->prepare("UPDATE tb_penyakit SET nama_penyakit=:nama_penyakit,solusi=:solusi, foto=:foto, keterangan_penyakit=:keterangan_penyakit WHERE kode_penyakit = :kode_penyakit");
             if ($editpenyakit->execute($data)) {
                 echo "<script>windows.location.href='../view/tb_penyakit.php?updates=update';</script>";
                 return true;

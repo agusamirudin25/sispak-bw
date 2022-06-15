@@ -168,7 +168,7 @@ if(isset($_POST['simpan'])){
 }
 
 ?>
-                                                <form class="forms-sample" method="POST">
+                                                <form class="forms-sample" method="POST" enctype="multipart/form-data">
                                                     <?php
                     require_once '../class/koneksi.php';
                     $kode_penyakit = $_GET['id'];
@@ -201,6 +201,17 @@ if(isset($_POST['simpan'])){
                                                             cols="40" rows="7"
                                                             placeholder="Masukan Keterangan Penyakit"><?php echo $row['keterangan_penyakit']?></textarea>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Foto</label>
+                                                        <input type="file" class="form-control" name="foto"
+                                                            id="exampleInputPassword1" accept="image/png, image/jpg, image/jpeg">
+                                                            <span class="text-info">Kosongkan foto jika tidak ada perubahan</span>
+                                                            <?php if($row['foto'] != "") : ?>
+                                                            <p>Foto Sebelumnya :</p>
+                                                            <img src="../foto/<?= $row['foto']?>">
+                                                            <?php endif; ?>
+                                                    </div>
+                                                    <input type="hidden" name="foto_lama" value="<?= $row['foto'] ?>">
                                                     <div class="form-group">
                                                         <label for="exampleInputEmail1">Solusi</label>
                                                         <textarea class="form-control" required name="solusi"

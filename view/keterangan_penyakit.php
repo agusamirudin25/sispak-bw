@@ -120,6 +120,12 @@ if (isset($_SESSION['status']) != 'login') {
                                                             <p class="card-text"
                                                                 style="text-align: justify; font-size:20px">
                                                                 <?= $row['keterangan_penyakit'] ?>
+                                                                <!-- show foto -->
+                                                                <?php if ($row['foto'] != null) : ?>
+                                                                <img src="../foto/<?= $row['foto'] ?>"
+                                                                    alt="<?= $row['nama_penyakit'] ?>"
+                                                                    style="width: 100%;">
+                                                                <?php endif; ?>
                                                             </p>
                                                         </div>
                                                     </div>

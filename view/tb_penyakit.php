@@ -197,12 +197,12 @@ if(isset($_SESSION['status']) != 'login'){
                                                             if(isset($kode_penyakit)){
                                                              
                                                               $kd1=(int)$count+1;
-                                                              $kd2="P0".$kd1;
+                                                              $kd2="P".$kd1;
                                                             }else{
                                                               $kd2='P01';
                                                             }
                                                             ?>
-                                                    <form method="POST">
+                                                    <form method="POST" enctype="multipart/form-data">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Kode Penyakit</label>
                                                             <input type="text" class="form-control" name="kode_penyakit"
@@ -227,6 +227,11 @@ if(isset($_SESSION['status']) != 'login'){
                                                                 placeholder="Masukan Keterangan Penyakit"></textarea>
                                                         </div>
 
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Foto</label>
+                                                            <input type="file" class="form-control" name="foto"
+                                                                id="exampleInputPassword1" required accept="image/png, image/jpg, image/jpeg">
+                                                        </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1">Solusi</label>
                                                             <textarea class="form-control" required name="solusi"

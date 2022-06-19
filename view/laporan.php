@@ -99,6 +99,7 @@ if (isset($_SESSION['status']) != 'login') {
 
                                     <div class="row justify-content-between">
                                         <div class="col-4">
+                                            <a class="btn btn-info" href="laporan_cetak.php">Cetak</a>
                                         </div>
                                         <div class="col-4">
                                             <input class="form-control" placeholder="Cari" type='text' id='input'

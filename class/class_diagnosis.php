@@ -64,16 +64,19 @@ class diagnosis extends koneksi
 
         // insert ke tb_diagnosa
         $nama = $_SESSION['username'];
-        $query_diagnosa = "INSERT INTO tb_diagnosa (nama, penyakit) VALUES ('$nama', '$kode_penyakit')";
+        $query_diagnosa = "INSERT INTO tb_diagnosa (username, penyakit) VALUES ('$nama', '$kode_penyakit')";
         $result_diagnosa = $this->db->prepare($query_diagnosa);
         $result_diagnosa->execute();
+        $_SESSION['gejala'] = $kode_gejala;
+        $_SESSION['penyakit'] = $kode_penyakit;
     ?>
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Hasil Diagnosa</h3>
-                <button class="btn btn-primary" id="btn-cetak" onclick="cetakHasil()">Cetak</button>
+                <a href="../view/diagnosis_cetak.php" class="btn btn-primary" id="btn-cetak">Cetak</a>
+                <!-- <button class="btn btn-primary" id="btn-cetak" onclick="cetakHasil()">Cetak</button> -->
             </div>
             <div class="card-body">
                 <div class="row">

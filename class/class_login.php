@@ -36,6 +36,7 @@ class login extends koneksi
                         });
                     </script>
                 <?php
+                exit;
 
                 }
 
@@ -54,7 +55,7 @@ class login extends koneksi
                         });
                     </script>
                 <?php
-
+                exit;
                 }
 
                 if ($_SESSION['hak_akses'] == 'user') {
@@ -72,7 +73,7 @@ class login extends koneksi
                         });
                     </script>
 <?php
-
+                exit;
                 }
             }
         }

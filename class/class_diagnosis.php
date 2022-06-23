@@ -11,8 +11,9 @@ class diagnosis extends koneksi
         $query = "SELECT tb_pengetahuan.*, tb_gejala.kode_gejala, tb_gejala.nama_gejala FROM tb_pengetahuan JOIN tb_gejala ON tb_pengetahuan.kode_gejala = tb_gejala.kode_gejala WHERE kode_penyakit = '$kode_penyakit'";
         $result = $this->db->prepare($query);
         $result->execute();
+        $tujuan = isset($_SESSION['username']) ? 'diagnosis_hasil.php' : 'diagnosis_hasil_masyarakat.php';
 ?>
-<form action="../view/diagnosis_hasil.php" method="post">
+<form action="../view/<?= $tujuan ?>" method="post">
     <input type="hidden" name="kode_penyakit" id="kode_penyakit" value="<?= $kode_penyakit ?>">
     <div class="row">
         <div class="col-md-12">
@@ -64,10 +65,12 @@ class diagnosis extends koneksi
         $row = $result_penyakit->fetch(PDO::FETCH_ASSOC);
 
         // insert ke tb_diagnosa
-        $nama = $_SESSION['username'];
-        $query_diagnosa = "INSERT INTO tb_diagnosa (username, penyakit) VALUES ('$nama', '$kode_penyakit')";
-        $result_diagnosa = $this->db->prepare($query_diagnosa);
-        $result_diagnosa->execute();
+        if(isset($_SESSION['username'])) :
+            $nama = $_SESSION['username'];
+            $query_diagnosa = "INSERT INTO tb_diagnosa (username, penyakit) VALUES ('$nama', '$kode_penyakit')";
+            $result_diagnosa = $this->db->prepare($query_diagnosa);
+            $result_diagnosa->execute();
+        endif;
         $_SESSION['gejala'] = $kode_gejala;
         $_SESSION['penyakit'] = $kode_penyakit;
     ?>

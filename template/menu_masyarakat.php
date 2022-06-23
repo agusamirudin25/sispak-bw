@@ -13,5 +13,12 @@
                 <span class="menu-title">Keterangan Penyakit</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="../view/diagnosis_masyarakat.php">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Diagnosa</span>
+
+            </a>
+        </li>
     </ul>
 </nav>

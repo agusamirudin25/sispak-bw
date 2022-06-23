@@ -37,7 +37,7 @@ if(isset($_SESSION['status']) != 'login'){
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo mr-5" href="index.php">
-                    <img src="images/logo.png" class="mr-2" alt="logo" style="height: 50px;">
+                    <img src="images/logo.png" class="mr-2" alt="logo">
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo2.png" alt="logo" /></a>
             </div>
@@ -223,11 +223,13 @@ if(isset($_SESSION['status']) != 'login'){
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
-                            © 2022. <a href="https://www.bootstrapdash.com/" target="_blank">
+                            © 2022 : <a class="text-decoration-none fw-bolder" href="../view/profil.php"
+                                style="color:blue;">Alvin
+                                Supriyan
                             </a>
                         </span>
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
-                            <i class="ti-heart text-danger ml-1"></i></span>
+                            <a class=" text-muted ml-1">STMIK Horizon Karawang</a></span>
                     </div>
                 </footer>
             </div>

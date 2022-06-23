@@ -7,7 +7,7 @@ class penyakit extends koneksi
 {
 
     //Tambah Penyakit
-    public function Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit)
+    public function Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit, $penyebab)
     {
         try {
             // uplod foto
@@ -30,14 +30,14 @@ class penyakit extends koneksi
                 ";
                 return false;
             }
-            $insertpenyakit = $this->db->prepare("INSERT INTO tb_penyakit(kode_penyakit,nama_penyakit,solusi, foto, keterangan_penyakit) VALUES(:kode_penyakit,:nama_penyakit,:solusi, :foto, :keterangan_penyakit)");
+            $insertpenyakit = $this->db->prepare("INSERT INTO tb_penyakit(kode_penyakit,nama_penyakit,solusi, foto, keterangan_penyakit, penyebab) VALUES(:kode_penyakit,:nama_penyakit,:solusi, :foto, :keterangan_penyakit, :penyebab)");
 
             $insertpenyakit->bindParam(":kode_penyakit", $kode_penyakit);
             $insertpenyakit->bindParam(":nama_penyakit", $nama_penyakit);
             $insertpenyakit->bindParam(":keterangan_penyakit", $keterangan_penyakit);
             $insertpenyakit->bindParam(":foto", $foto);
             $insertpenyakit->bindParam(":solusi", $solusi);
-
+            $insertpenyakit->bindParam(":penyebab", $penyebab);
             if ($insertpenyakit->execute()) {
 ?>
 <script>
@@ -77,7 +77,14 @@ Swal.fire({
             style="text-align: justify;"><?php echo "{$row['keterangan_penyakit']}"; ?></textarea>
 
     </td>
-    <td><textarea class="form-control" cols="50" readonly rows="7"><?php echo "{$row['solusi']}"; ?></textarea></td>
+    <td><textarea class="form-control" cols="50" readonly rows="7"
+            style="text-align: justify;"><?php echo "{$row['solusi']}"; ?></textarea></td>
+    <td><textarea class="form-control" cols="50" readonly rows="7"
+            style="text-align: justify;"><?php echo "{$row['penyebab']}"; ?></textarea></td>
+    </td>
+    <td>
+        <img src="../foto/<?= $row['foto']?>" alt="" style="width: 100px; border-radius: 0; height:auto">
+    </td>
     <td>
         <center>
             <a href="../view/tb_penyakit_edit.php?id=<?php echo $row['kode_penyakit'] ?>" class='btn btn-warning'><span
@@ -93,7 +100,7 @@ Swal.fire({
 
 
     //Edit Penyakit
-    public function Editpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit)
+    public function Editpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit, $penyebab)
     {
        
         try {
@@ -125,10 +132,11 @@ Swal.fire({
                 'nama_penyakit' => $nama_penyakit,
                 'solusi' => $solusi,
                 'keterangan_penyakit' => $keterangan_penyakit,
-                'foto' => $foto
+                'foto' => $foto,
+                'penyebab' => $penyebab
             ];
 
-            $editpenyakit = $this->db->prepare("UPDATE tb_penyakit SET nama_penyakit=:nama_penyakit,solusi=:solusi, foto=:foto, keterangan_penyakit=:keterangan_penyakit WHERE kode_penyakit = :kode_penyakit");
+            $editpenyakit = $this->db->prepare("UPDATE tb_penyakit SET nama_penyakit=:nama_penyakit,solusi=:solusi, foto=:foto, keterangan_penyakit=:keterangan_penyakit, penyebab=:penyebab WHERE kode_penyakit = :kode_penyakit");
             if ($editpenyakit->execute($data)) {
                 echo "<script>windows.location.href='../view/tb_penyakit.php?updates=update';</script>";
                 return true;
@@ -145,6 +153,7 @@ Swal.fire({
 
     //Tampil Hitung Penyakit Pada Halaman Admin
     public function tampilkartu($total)
+    
     {
         $query = "SELECT COUNT(*) AS total FROM $total";
         $card = $this->db->prepare($query);

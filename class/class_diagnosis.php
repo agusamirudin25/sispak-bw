@@ -1,6 +1,7 @@
 <?php
 
 require_once 'koneksi.php';
+require_once '../fpdf/fpdf.php';
 
 class diagnosis extends koneksi
 {
@@ -100,6 +101,20 @@ class diagnosis extends koneksi
                             <input type="text" class="form-control" value="<?= $row['nama_penyakit'] ?>" readonly>
                         </div>
                     </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Solusi</label>
+                            <textarea class="form-control" rows="6" readonly><?= $row['solusi'] ?></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Penyebab</label>
+                            <textarea class="form-control" rows="6" readonly><?= $row['penyebab'] ?></textarea>
+                        </div>
+                    </div>
                     <!-- 
                     <div class="col-md-12">
                         <div class="form-group mb-0">
@@ -166,6 +181,46 @@ class diagnosis extends koneksi
 </div>
 <?php
         endif;
+    }
+
+    public function cetakDiagnosis($gejala, $penyakit)
+    {
+        $query_gejala = "SELECT * FROM tb_gejala WHERE kode_gejala IN ('" . implode("','", $gejala) . "')";
+        $query_penyakit = "SELECT * FROM tb_penyakit WHERE kode_penyakit = '$penyakit'";
+        $pdf = new \FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(200, 10, 'HASIL DIAGNOSA', 0, 1, 'C');
+
+
+        $pdf->SetFont('Times', '', 12);
+        $pdf->Cell(10, 5, '', 0, 1);
+        $pdf->SetFont('Times', 'B', 12);
+        $pdf->Cell(45, 10, 'Gejala yang dipilih :', 0, 1, 'L');
+        $result_gejala = $this->db->prepare($query_gejala);
+        $result_gejala->execute();
+        $gejala = $result_gejala->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($gejala as $key => $row) {
+            $pdf->SetFont('Times', '', 12);
+            $pdf->Cell(170, 10, ($key + 1) . ". {$row['nama_gejala']}", 0, 1, 'L');
+        }
+
+        $pdf->Cell(10, 5, '', 0, 1);
+        $pdf->SetFont('Times', 'B', 12);
+        $pdf->Cell(45, 10, 'Penyakit :', 0, 1, 'L');
+        $result_penyakit = $this->db->prepare($query_penyakit);
+        $result_penyakit->execute();
+        $penyakit = $result_penyakit->fetch(PDO::FETCH_ASSOC);
+        $pdf->SetFont('Times', '', 12);
+        $pdf->Cell(170, 10, "Kode Penyakit : {$penyakit['kode_penyakit']}", 0, 1, 'L');
+        $pdf->Cell(170, 10, "Nama Penyakit : {$penyakit['nama_penyakit']}", 0, 1, 'L');
+        $pdf->MultiCell(180, 10, "{$penyakit['keterangan_penyakit']}", 0);
+        $pdf->Cell(180, 10, "Solusi :", 0, 1, 'L');
+        $pdf->MultiCell(180, 10, "{$penyakit['solusi']}", 0);
+        $pdf->Cell(180, 10, "Penyebab :", 0, 1, 'L');
+        $pdf->MultiCell(180, 10, "{$penyakit['penyebab']}", 0);
+
+        $pdf->Output();
     }
 }
 

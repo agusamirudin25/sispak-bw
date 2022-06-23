@@ -21,18 +21,61 @@ class login extends koneksi{
                 $_SESSION['status'] = "login";
 
                 if($_SESSION['hak_akses']=='admin'){
-                    header("location:../template/index.php");
-                }
-                if($_SESSION['hak_akses']=='pakar'){
-                    header("location:../template/indexpakar.php");
-                }
+                    ?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
 
-                if($_SESSION['hak_akses']=='user'){
-                    header("location:../template/indexuser.php");
-                }
-            }
-        }
-    }
+    icon: 'success',
+    title: 'Login Berhasil',
+    showConfirmButton: false,
+    timer: 1500
+}).then((result) => {
+    location.href = "../template/index.php";
+});
+</script>
+<?php
+                    
+                    }
+                    
+                if($_SESSION['hak_akses']=='pakar'){
+                    ?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
+
+    icon: 'success',
+    title: 'Login Berhasil',
+    showConfirmButton: false,
+    timer: 1500
+}).then((result) => {
+    location.href = "../template/indexpakar.php";
+});
+</script>
+<?php
+
+}
+
+if($_SESSION['hak_akses']=='user'){
+    ?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
+
+    icon: 'success',
+    title: 'Login Berhasil',
+    showConfirmButton: false,
+    timer: 1500
+}).then((result) => {
+    location.href = "../template/indexuser.php";
+});
+</script>
+<?php
+
+}
+}
+}
+}
 }
 
 $login = new login($con);

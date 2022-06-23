@@ -160,8 +160,8 @@ if(isset($_POST['simpan'])){
     $nama_penyakit = $_POST['nama_penyakit'];
     $solusi = $_POST['solusi'];
     $keterangan_penyakit = $_POST['keterangan_penyakit'];
-
-    $penyakit->Editpenyakit($kode_penyakit, $nama_penyakit,$solusi, $keterangan_penyakit);
+    $penyebab = $_POST['penyebab'];
+    $penyakit->Editpenyakit($kode_penyakit, $nama_penyakit,$solusi, $keterangan_penyakit, $penyebab);
     echo "<script> alert('Data Berhasil Diubah');
     window.location='tb_penyakit.php';
     </script>";
@@ -204,12 +204,14 @@ if(isset($_POST['simpan'])){
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Foto</label>
                                                         <input type="file" class="form-control" name="foto"
-                                                            id="exampleInputPassword1" accept="image/png, image/jpg, image/jpeg">
-                                                            <span class="text-info">Kosongkan foto jika tidak ada perubahan</span>
-                                                            <?php if($row['foto'] != "") : ?>
-                                                            <p>Foto Sebelumnya :</p>
-                                                            <img src="../foto/<?= $row['foto']?>">
-                                                            <?php endif; ?>
+                                                            id="exampleInputPassword1"
+                                                            accept="image/png, image/jpg, image/jpeg">
+                                                        <span class="text-info">Kosongkan foto jika tidak ada
+                                                            perubahan</span>
+                                                        <?php if($row['foto'] != "") : ?>
+                                                        <p>Foto Sebelumnya :</p>
+                                                        <img src="../foto/<?= $row['foto']?>">
+                                                        <?php endif; ?>
                                                     </div>
                                                     <input type="hidden" name="foto_lama" value="<?= $row['foto'] ?>">
                                                     <div class="form-group">
@@ -219,14 +221,25 @@ if(isset($_POST['simpan'])){
                                                             placeholder="Masukan Solusi"><?php echo $row['solusi']?></textarea>
 
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Penyebab</label>
+                                                        <textarea class="form-control" required name="penyebab"
+                                                            id="penyebab" cols="40" rows="7"
+                                                            placeholder="Masukan Penyebab"><?php echo $row['penyebab']?></textarea>
+
+                                                    </div>
                                                     <?php
 
                     }
                     ?>
                                             </div>
-                                            <button type="submit" class="btn btn-primary mr-2"
-                                                name="simpan">Submit</button>
-                                            <button class="btn btn-light">Cancel</button>
+                                            <center>
+                                                <button type="submit" class="btn btn-primary" style="width: 100px;"
+                                                    name=" simpan">Simpan</button>
+
+                                                <input type="button" class=" btn btn-danger " style="width: 100px;"
+                                                    value="Batal" onclick="history.back(-1)" />
+                                            </center>
                                             </form>
                                         </div>
                                     </div>

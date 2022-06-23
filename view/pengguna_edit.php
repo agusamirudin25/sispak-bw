@@ -99,19 +99,19 @@ if(isset($_SESSION['status']) != 'login'){
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../../pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../../pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../../pages/ui-features/typography.html">Typography</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="tb_gejala.php">Kelola Data <br>
+                                        Gejala</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="tb_penyakit.php">Kelola Data <br>
+                                        Penyakit</a>
+                                </li>
+
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
                             aria-controls="form-elements">
-                            <i class="icon-paper menu-icon"></i>
+                            <i class="icon-head menu-icon"></i>
                             <span class="menu-title">Kelola Pengguna</span>
                             <i class="menu-arrow"></i>
                         </a>
@@ -122,88 +122,9 @@ if(isset($_SESSION['status']) != 'login'){
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
-                            aria-controls="charts">
-                            <i class="icon-bar-graph menu-icon"></i>
-                            <span class="menu-title">Charts</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="charts">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../template/pages/charts/chartjs.html">ChartJs</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
-                            aria-controls="tables">
-                            <i class="icon-grid-2 menu-icon"></i>
-                            <span class="menu-title">Tables</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="tables">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../template/pages/tables/basic-table.html">Basic table</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
-                            aria-controls="icons">
-                            <i class="icon-contract menu-icon"></i>
-                            <span class="menu-title">Icons</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="icons">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="../template/pages/icons/mdi.html">Mdi
-                                        icons</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
-                            aria-controls="auth">
-                            <i class="icon-head menu-icon"></i>
-                            <span class="menu-title">Profil</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="auth">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="profil.php"> Profil </a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../template/pages/samples/register.html"> Register </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
-                            aria-controls="error">
-                            <i class="icon-ban menu-icon"></i>
-                            <span class="menu-title">Error pages</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="error">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../template/pages/samples/error-404.html"> 404 </a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../template/pages/samples/error-500.html"> 500 </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../template/pages/documentation/documentation.html">
-                            <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Documentation</span>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
-
 
             <!-- partial -->
             <div class="main-panel">
@@ -299,9 +220,14 @@ if(isset($_POST['simpan'])){
                     }
                     ?>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary mr-2"
-                                                            name="simpan">Submit</button>
-                                                        <button class="btn btn-light">Cancel</button>
+                                                        <center>
+                                                            <button type="submit" class="btn btn-primary"
+                                                                style="width: 100px;" name=" simpan">Simpan</button>
+
+                                                            <input type="button" class=" btn btn-danger "
+                                                                style="width: 100px;" value="Batal"
+                                                                onclick="history.back(-1)" />
+                                                        </center>
                                                 </form>
                                             </div>
                                         </div>

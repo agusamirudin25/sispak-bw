@@ -1,9 +1,5 @@
 <?php
 session_start();
-
-if(isset($_SESSION['status']) != 'login'){
-  header("location:../login/login.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,15 +31,16 @@ if(isset($_SESSION['status']) != 'login'){
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="indexpakar.php"><img src="images/logo.png" class="mr-2"
+                <a class="navbar-brand brand-logo mr-5" href="indexuser.php"><img src="images/logo.png" class="mr-2"
                         alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="indexpakar.php"><img src="images/logo2.png"
+                <a class="navbar-brand brand-logo-mini" href="indexuser.php"><img src="images/logo2.png"
                         alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
+
 
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown">
@@ -60,14 +57,10 @@ if(isset($_SESSION['status']) != 'login'){
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
-                                <i class="icon-head text-primary"></i>
-                                <?php echo $_SESSION['username'];?>
-                            </a>
-                            <a class="dropdown-item">
-                                <p class="logout">
+                            <a class="dropdown-item" href="../login/login.php">
+                                <p class="">
                                     <i class="ti-power-off text-primary"></i>
-                                    Logout
+                                    Login
                                 </p>
                             </a>
                         </div>
@@ -86,80 +79,68 @@ if(isset($_SESSION['status']) != 'login'){
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
 
-            <?php require_once '../template/menu_pakar.php' ?>
+            <?php require_once '../template/menu_masyarakat.php' ?>
             <!-- partial -->
-
-
             <div class="main-panel">
                 <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Bayi Pasca Kelahiran</h4>
+                                    <p class="card-description">
 
-                    <?php
-                          require_once "../class/class_gejala.php";
-                        ?>
 
-                    <div class="page-content">
-                        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-                            <div>
-                                <h4 class="mb-3 mb-md-0"></h4>
-                            </div>
-                        </div>
 
-                        <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-6 grid-margin stretch-card">
+                                            <div class="card tale-bg">
+                                                <div class="card-people mt-auto" style=" padding-top: 1px;">
+                                                    <img src="../login/images/bay.png">
 
-                            <div class="col-12 col-xl-12 stretch-card">
-                                <div class="row flex-grow-1">
-                                    <div class="col-md-4 grid-margin stretch-card">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between align-items-baseline">
-                                                    <h6 class="card-title mb-0">Total Gejala</h6>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6 col-md-12 col-xl-5">
-                                                        <h3 class="mb-2">
-                                                            <br><?php echo $gejala->Tampilcard("tb_gejala")?>
-                                                        </h3>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4 grid-margin stretch-card">
-                                        <div class="card">
 
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between align-items-baseline">
-                                                    <h6 class="card-title mb-0">Total Penyakit</h6>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6 col-md-12 col-xl-5">
-                                                        <h3 class="mb-2">
-                                                            <br> <?php echo $gejala->Tampilcard("tb_penyakit")?></p>
-                                                        </h3>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-6 grid-margin transparent">
+                                            <div class="row">
 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 grid-margin stretch-card">
-                                        <div class="card">
-
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between align-items-baseline">
-                                                    <h6 class="card-title mb-0">Total Konsultasi</h6>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6 col-md-12 col-xl-5">
-                                                        <h3 class="mb-2">
-                                                            <br> <?php echo $gejala->Tampilcard("tb_konsul")?>
-                                                        </h3>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <p align="justify" style="font-size:1.2rem;font-family: sans-serif;">Bayi baru
+                                        lahir normal adalah bayi
+                                        yang memiliki
+                                        berat
+                                        badan
+                                        lahir antara 2500-4000 gram, cukup bulan, lahir langsung menangis dan tidak
+                                        ada kelainan congenital (cacat bawaan) yang berat (Rahardjo, 2014:9). Bayi
+                                        baru lahir dan neonatus meliputi umur 0-28 hari. Kehidupan pada masa
+                                        neonatus ini sangat rawan oleh karena itu memerlukan penyesuaian fisiologis
+                                        agar bayi di luar kandungan dapat hidup sebaik-baiknya (Diah, 2012:1). Bayi
+                                        merupakan individu yang lemah dan membutuhkan proses adaptasi serta harus
+                                        bisa melakukan 4 penyesuaian untuk tetap hidup, yaitu penyesuaian perubahan
+                                        suhu, menghisap dan menelan, bernafas dan membuang kotoran. Kesulitan
+                                        penyesuaian atau adaptasi akan mengalami penurunan berat badan,
+                                        keterlambatan perkembangan bahkan bisa terjadi meninggal dunia (Mansur,
+                                        2009). Sumber lain mengatakan bayi baru lahir disebut dengan neonatus
+                                        merupakan individu yang sedang bertumbuh dan baru saja mengalami trauma
+                                        kelahiran serta harus dapat melakukan penyesuaian diri dari kehidupan
+                                        intrauterin ke kehidupan ekstrauterin (Dewi, 2010:6). Menangis adalah satu
+                                        satunya cara bayi untuk berkomunikasi kepada lingkungan sekitar. Tidak ada
+                                        satu tangisan bayi dengan nada yang sama dalam mengungkapkan keinginannya
+                                        maupun perasaannya (Dhieny dkk, 2014). Menurut data hasil Survei Demografi
+                                        dan Kesehatan Indonesia (SDKI) tahun 2012, Angka Kematian Neonatal (AKN) di
+                                        Indonesia sebesar 19 kematian/1000 untuk kelahiran hidup dan Angka Kematian
+                                        Bayi (AKB) dengan jumlah 32 kematian/1000 kelahiran hidup (Depkes RI, 2013).
+                                        Pada masa periode neonatal, bayi belum seutuhnya bisa beradaptasi dengan
+                                        lingkungan sekitar. Sehingga bayi bisa rentan terkena penyakit yang umumnya
+                                        bisa saja bawaan dari orang tua. Periode post neonatal adalah periode dimana
+                                        bayi berusia 1 bulan hingga 12 bulan. Pada periode ini bayi mulai bisa
+                                        beradaptasi dengan lingkungan sekitar sedikit demi sedikit. Jika bayi
+                                        terkena penyakit pada periode post neonatal ini umumnya karena terpengaruh
+                                        faktor lingkungan..</p>
                                 </div>
                             </div>
                         </div>
@@ -193,6 +174,7 @@ if(isset($_SESSION['status']) != 'login'){
     <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+
     <!-- plugins:js -->
 
     <script>

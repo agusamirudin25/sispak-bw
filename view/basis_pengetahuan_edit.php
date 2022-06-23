@@ -180,9 +180,13 @@ if (isset($_SESSION['status']) != 'login') {
                                             </select>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Batal</button>
-                                            <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                                            <center>
+                                                <button type="submit" class="btn btn-primary" style="width: 100px;"
+                                                    name=" simpan">Simpan</button>
+
+                                                <input type="button" class=" btn btn-danger " style="width: 100px;"
+                                                    value="Batal" onclick="history.back(-1)" />
+                                            </center>
                                         </div>
                                     </form>
 

@@ -171,8 +171,8 @@ if(isset($_SESSION['status']) != 'login'){
                                                                 $nama_penyakit = $_POST['nama_penyakit'];
                                                                 $keterangan_penyakit = $_POST['keterangan_penyakit'];
                                                                 $solusi = $_POST['solusi'];
-
-                                                                $penyakit->Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit);
+                                                                $penyebab = $_POST['penyebab'];
+                                                                $penyakit->Insertpenyakit($kode_penyakit, $nama_penyakit, $solusi, $keterangan_penyakit, $penyebab);
                                                             }
                                                             ?>
                                                     <?php
@@ -230,7 +230,8 @@ if(isset($_SESSION['status']) != 'login'){
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1">Foto</label>
                                                             <input type="file" class="form-control" name="foto"
-                                                                id="exampleInputPassword1" required accept="image/png, image/jpg, image/jpeg">
+                                                                id="exampleInputPassword1"
+                                                                accept="image/png, image/jpg, image/jpeg">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1">Solusi</label>
@@ -238,7 +239,12 @@ if(isset($_SESSION['status']) != 'login'){
                                                                 id="solusi" cols="30" rows="4"
                                                                 placeholder="Masukan Solusi"></textarea>
                                                         </div>
-
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Penyebab</label>
+                                                            <textarea class="form-control" required name="penyebab"
+                                                                id="penyebab" cols="30" rows="4"
+                                                                placeholder="Masukan Penyebab"></textarea>
+                                                        </div>
 
 
                                                         <div class="modal-footer">
@@ -284,6 +290,13 @@ if(isset($_SESSION['status']) != 'login'){
                                                         Solusi
                                                     </th>
                                                     <th>
+                                                        Penyebab
+                                                    </th>
+                                                    <th>
+                                                        Foto
+                                                    </th>
+
+                                                    <th>
                                                         <center>
                                                             Opsi
                                                         </center>
@@ -303,73 +316,80 @@ if(isset($_SESSION['status']) != 'login'){
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- partial -->
-                    <!-- content-wrapper ends -->
-                    <!-- partial:../../../../partials/_footer.html -->
-                    <footer class="footer">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
-                                © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin
-                                    template</a>
-                                from
-                                BootstrapDash. All rights reserved.</span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted
-                                & made with <i class="ti-heart text-danger ml-1"></i></span>
-                        </div>
-                    </footer>
-                    <!-- partial -->
                 </div>
-                <!-- main-panel ends -->
+
+                <!-- partial -->
+                <!-- content-wrapper ends -->
+                <!-- partial:../../../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
+                            © 2022 : <a class="text-decoration-none fw-bolder" href="../view/profil.php"
+                                style="color:blue;">Alvin
+                                Supriyan
+                            </a>
+                        </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                            <a class=" text-muted ml-1">STMIK Horizon Karawang</a></span>
+                    </div>
+                </footer>
             </div>
-            <!-- page-body-wrapper ends -->
         </div>
-        <!-- container-scroller -->
-        <!-- plugins:js -->
-        <script src="../template/vendors/js/vendor.bundle.base.js"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
-        <!-- End plugin js for this page -->
-        <!-- inject:js -->
-        <script src="../template/js/delete2.js"></script>
-        <script src="../template/js/off-canvas.js"></script>
-        <script src="../template/js/hoverable-collapse.js"></script>
-        <script src="../template/js/template.js"></script>
-        <script src="../template/js/settings.js"></script>
-        <script src="../template/js/todolist.js"></script>
-        <script>
-        function searchTable() {
-            var input;
-            var saring;
-            var status;
-            var tbody;
-            var tr;
-            var td;
-            var i;
-            var j;
-            input = document.getElementById("input");
-            saring = input.value.toUpperCase();
-            tbody = document.getElementsByTagName("tbody")[0];;
-            tr = tbody.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
-                        status = true;
-                    }
-                }
-                if (status) {
-                    tr[i].style.display = "";
-                    status = false;
-                } else {
-                    tr[i].style.display = "none";
+    </div>
+
+    </div>
+    </div>
+    <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../template/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../template/js/delete2.js"></script>
+    <script src="../template/js/off-canvas.js"></script>
+    <script src="../template/js/hoverable-collapse.js"></script>
+    <script src="../template/js/template.js"></script>
+    <script src="../template/js/settings.js"></script>
+    <script src="../template/js/todolist.js"></script>
+    <script>
+    function searchTable() {
+        var input;
+        var saring;
+        var status;
+        var tbody;
+        var tr;
+        var td;
+        var i;
+        var j;
+        input = document.getElementById("input");
+        saring = input.value.toUpperCase();
+        tbody = document.getElementsByTagName("tbody")[0];;
+        tr = tbody.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
+                    status = true;
                 }
             }
+            if (status) {
+                tr[i].style.display = "";
+                status = false;
+            } else {
+                tr[i].style.display = "none";
+            }
         }
-        </script>
-        <script src="../template/js/logout.js"></script>
-        <!-- endinject -->
+    }
+    </script>
+    <script src="../template/js/logout.js"></script>
+    <!-- endinject -->
 </body>
 
 </html>

@@ -197,9 +197,13 @@ if(isset($_SESSION['status']) != 'login'){
                     }
                     ?>
                                             </div>
-                                            <button type="submit" class="btn btn-primary mr-2"
-                                                name="simpan">Submit</button>
-                                            <button class="btn btn-light">Cancel</button>
+                                            <center>
+                                                <button type="submit" class="btn btn-primary" style="width: 100px;"
+                                                    name=" simpan">Simpan</button>
+
+                                                <input type="button" class=" btn btn-danger " style="width: 100px;"
+                                                    value="Batal" onclick="history.back(-1)" />
+                                            </center>
                                             </form>
                                         </div>
                                     </div>

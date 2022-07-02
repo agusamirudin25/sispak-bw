@@ -204,22 +204,23 @@ if(isset($_SESSION['status']) != 'login'){
                                                             ?>
                                                     <form method="POST" enctype="multipart/form-data">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">Kode Penyakit</label>
+                                                            <label for="exampleInputkode_penyakit">Kode Penyakit</label>
                                                             <input type="text" class="form-control" name="kode_penyakit"
-                                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                id="exampleInputkode_penyakit"
+                                                                aria-describedby="emailHelp"
                                                                 value="<?php echo "$kd2";?>"
                                                                 placeholder="Masukan Kode Penyakit" readonly>
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="exampleInputPassword1">Nama Penyakit</label>
+                                                            <label for="exampleInputnama_penyakit">Nama Penyakit</label>
                                                             <input type="text" class="form-control" name="nama_penyakit"
-                                                                id="exampleInputPassword1"
+                                                                id="exampleInputnama_penyakit"
                                                                 placeholder="Masukan Nama Penyakit" required>
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="exampleInputPassword1">Keterangan
+                                                            <label for="exampleInputketerangan">Keterangan
                                                                 Penyakit</label>
                                                             <textarea class="form-control" required
                                                                 name="keterangan_penyakit" id="keterangan_penyakit"
@@ -228,19 +229,19 @@ if(isset($_SESSION['status']) != 'login'){
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label for="exampleInputPassword1">Foto</label>
+                                                            <label for="exampleInputfoto">Foto</label>
                                                             <input type="file" class="form-control" name="foto"
-                                                                id="exampleInputPassword1"
+                                                                id="exampleInputfoto"
                                                                 accept="image/png, image/jpg, image/jpeg">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="exampleInputPassword1">Solusi</label>
+                                                            <label for="exampleInputsolusi">Solusi</label>
                                                             <textarea class="form-control" required name="solusi"
                                                                 id="solusi" cols="30" rows="4"
                                                                 placeholder="Masukan Solusi"></textarea>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="exampleInputPassword1">Penyebab</label>
+                                                            <label for="exampleInputpenyebab">Penyebab</label>
                                                             <textarea class="form-control" required name="penyebab"
                                                                 id="penyebab" cols="30" rows="4"
                                                                 placeholder="Masukan Penyebab"></textarea>
@@ -295,6 +296,9 @@ if(isset($_SESSION['status']) != 'login'){
                                                     <th>
                                                         Foto
                                                     </th>
+                                                    <th>
+                                                        Status
+                                                    </th>
 
                                                     <th>
                                                         <center>
@@ -306,7 +310,7 @@ if(isset($_SESSION['status']) != 'login'){
 
                                             <?php
                                             require_once '../class/class_penyakit.php';
-                                            $query = "SELECT * FROM tb_penyakit";
+                                            $query = "SELECT tb_penyakit.*, tb_login.nama FROM tb_penyakit LEFT JOIN tb_login ON tb_penyakit.verifikasi = tb_login.username";
                                             $penyakit->Tampilpenyakit($query);
                                             ?>
 

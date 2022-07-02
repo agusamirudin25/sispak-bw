@@ -52,18 +52,8 @@ session_start();
                     </li>
                     <li class="nav-item nav-profile dropdown">
 
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <i class="icon-cog text-primary"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="../login/login.php">
-                                <p class="">
-                                    <i class="ti-power-off text-primary"></i>
-                                    Login
-                                </p>
-                            </a>
-                        </div>
+
+
                     </li>
 
                 </ul>

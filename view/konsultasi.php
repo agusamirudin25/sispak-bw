@@ -177,49 +177,33 @@ if(isset($_POST['simpan'])){
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
+                        © 2022 : <a class="text-decoration-none fw-bolder" href="../view/profil.php"
+                            style="color:blue;">Alvin
+                            Supriyan
+                        </a>
+                    </span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                        <a class=" text-muted ml-1">STMIK Horizon Karawang</a></span>
+                </div>
+            </footer>
         </div>
-
-
-        <!-- Button trigger modal -->
-
-
-
-
-
-
-    </div>
-
     </div>
     </div>
     </div>
     </div>
-
-
-
-
-
-    <!-- partial -->
-    <!-- content-wrapper ends -->
-    <!-- partial:../../partials/_footer.html -->
-    <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-
-        </div>
-    </footer>
-    <!-- partial -->
     </div>
-    <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
+    </div>
+    </div>
     <script src="../template/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

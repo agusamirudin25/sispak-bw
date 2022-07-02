@@ -18,6 +18,7 @@ class pengguna extends koneksi {
             if ($tambahpengguna->execute()){
                 if(isset($_SESSION['hak_akses']) == "admin"){
                     ?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 Swal.fire({
 
@@ -32,15 +33,16 @@ Swal.fire({
 <?php
             }else{
             ?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 Swal.fire({
 
     icon: 'success',
-    title: 'Registrasi Berhasil',
+    title: 'Registrasi Berhasil, Silahkan Login',
     showConfirmButton: false,
-    timer: 1500
+    timer: 2500
 }).then((result) => {
-    location.href = "../../../login/login.php";
+    location.href = "login.php";
 });
 </script>
 <?php
@@ -115,18 +117,6 @@ Swal.fire({
         }
     }
     
-    
-      //Tampil Hitung Pengguna Pada Halaman Admin
-    public function Tampilcards($total){
-        $query="SELECT COUNT(*) AS total FROM $total";
-        $card = $this->db->prepare($query);
-        $card->execute();
-    
-        while($row=$card->fetch(PDO::FETCH_ASSOC)){
-            $count=$row['total'];
-            return $count;
-        }
-    }
 
     //Hapus
     public function hapuspengguna($id){

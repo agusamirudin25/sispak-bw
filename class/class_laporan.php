@@ -25,10 +25,18 @@ class laporan extends koneksi
     {
         $pdf = new \FPDF();
         $pdf->AddPage();
-        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->SetFont('Arial', 'B', 18);
+        $pdf->Cell(0,5, 'KLINIK PRATAMA BUNDA RAHAYU', 0, 1, 'C',false);
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->Cell(0,3, 'Jalan Raya Rawa Gebang Nomor 47, Jatibaru, Kecamatan Cikarang Timur, Kabupaten Bekasi, Jawa Barat 17530', 0, 1, 'C',false);
+        $pdf->Cell(0,5, 'No.Telp: 083815550881', 0, 1, 'C',false);
+        $pdf->Ln(8);
+        $pdf->Cell(190,0.6,'','0','1','C',true);
+        $pdf->Ln(5);
+        $pdf->SetFont('Arial', 'B', 12);
         $pdf->Cell(200, 10, 'LAPORAN HASIL DIAGNOSA', 0, 1, 'C');
         
-        $pdf->setXY(21, 28);
+        $pdf->setXY(20, 40);
         $pdf->SetFont('Times', '', 12);
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->SetFont('Times', 'B', 12);
@@ -44,25 +52,13 @@ class laporan extends koneksi
         
         foreach ($diagnosa as $key => $row) {
             $pdf->SetFont('Times', '', 12);
-            $pdf->Cell(10, 10, $key + 1, 1, 0, 'C');
-            $pdf->Cell(45, 10, $row['nama_user'], 1, 0, 'L');
-            $pdf->Cell(35, 10, $row['penyakit'], 1, 0, 'L');
-            $pdf->Cell(55, 10, $row['nama_penyakit'], 1, 0, 'L');
-            $pdf->Cell(40, 10, $row['tanggal'], 1, 1, 'C');
+            $pdf->Cell(10, 5, $key + 1, 1, 0, 'C');
+            $pdf->Cell(45, 5, $row['nama_user'], 1, 0, 'L');
+            $pdf->Cell(35, 5, $row['penyakit'], 1, 0, 'L');
+            $pdf->Cell(55, 5, $row['nama_penyakit'], 1, 0, 'L');
+            $pdf->Cell(40, 5, $row['tanggal'], 1, 1, 'C');
         }
-        
-        // $pdf->SetFont('Times', '', 12);
-        // $pdf->Cell(10, 5, '', 0, 1);
-        // $pdf->SetFont('Times', 'B', 12);
-        // $query_gejala = "SELECT tb_diagnosa.*, tb_login.nama as nama_user, tb_penyakit.nama_penyakit FROM tb_diagnosa JOIN tb_login ON tb_diagnosa.username = tb_login.username JOIN tb_penyakit ON tb_diagnosa.penyakit = tb_penyakit.kode_penyakit";
-        // $result_gejala = $con->prepare($query_gejala);
-        // $result_gejala->execute();
-        // $gejala = $result_gejala->fetchAll(PDO::FETCH_ASSOC);
-        // foreach ($gejala as $key => $row) {
-        //     $pdf->SetFont('Times', '', 12);
-        //     $pdf->Cell(170, 10, ($key + 1) . ". {$row['nama_gejala']}", 0, 1, 'L');
-        // }
-        
+
         $pdf->Output();
     }
 

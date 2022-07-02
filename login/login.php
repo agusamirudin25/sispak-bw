@@ -98,8 +98,8 @@
                         </a>
                     </div>
 
-                    <div class="text-center p-t-136">
-                        <a class="txt2" href="#">
+                    <div class="text-center ">
+                        <a class="txt2" href="../index.php">Pergi Ke Beranda
 
                             <i aria-hidden="true"></i>
                         </a>
@@ -109,53 +109,63 @@
         </div>
     </div>
     <footer class="text-center text-white"
-        style=" width: 100%; height: 50px; padding-left: 10px; line-height: 50px;position: absolute;bottom: 0px;">
+        style=" width: 100%; height: 60px; padding-left: 10px; line-height: 20px;position: absolute;bottom: 0px;">
         © 2022 Copyright :
-        <a class="text-reset fw-bold" href="../view/profil.php" style="color:white;">Alvin Supriyan</a>
-    </footer>
+        <a class="text-reset fw-bold" href="../view/profil.php" target="blank" style="color:white;">Alvin Supriyan</a>
+        <br>
+        <a href="../view/Melatih Pengguna dan Dokumentasi.pdf" target="blank" style="color:white;">Bantuan</a>
 
-    <script type="text/javascript">
-    const password = document.getElementById('inputPassword');
-    const toggle = document.getElementById('toggle');
 
-    function showHide() {
-        if (password.type === 'password') {
-            password.setAttribute('type', 'text');
-            toggle.classList.add('hide')
-        } else {
-            password.setAttribute('type', 'password');
-            toggle.classList.remove('hide')
-        }
+
+
+</body>
+
+</html>
+</a>
+</footer>
+
+<script type=" text/javascript">
+const password = document.getElementById('inputPassword');
+const toggle = document.getElementById('toggle');
+
+function showHide() {
+    if (password.type === 'password') {
+        password.setAttribute('type', 'text');
+        toggle.classList.add('hide')
+    } else {
+        password.setAttribute('type', 'password');
+        toggle.classList.remove('hide')
     }
-    </script>
+}
+</script>
 
-    <script>
-    function myFunction() {
-        var x = document.getElementById("inputPassword");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
+<script>
+function myFunction() {
+    var x = document.getElementById("inputPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
     }
-    </script>
+}
+</script>
 
-    <!--===============================================================================================-->
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/bootstrap/js/popper.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="vendor/tilt/tilt.jquery.min.js"></script>
-    <script>
-    $('.js-tilt').tilt({
-        scale: 1.1
-    })
-    </script>
-    <!--===============================================================================================-->
-    <script src="js/main.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/tilt/tilt.jquery.min.js"></script>
+<script>
+$('.js-tilt').tilt({
+    scale: 1.1
+})
+</script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
 
 </body>
 

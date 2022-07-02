@@ -73,21 +73,7 @@ session_start();
 
                         </div>
                     </li>
-                    <li class="nav-item nav-profile dropdown">
 
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <i class="icon-cog text-primary"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="../login/login.php">
-                                <p class="">
-                                    <i class="ti-power-off text-primary"></i>
-                                    Login
-                                </p>
-                            </a>
-                        </div>
-                    </li>
 
                 </ul>
 
@@ -135,18 +121,28 @@ session_start();
                             </div>
                         </div>
                     </div>
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
+                                © 2022 : <a class="text-decoration-none fw-bolder" href="../view/profil.php"
+                                    style="color:blue;">Alvin
+                                    Supriyan
+                                </a>
+                            </span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                                <a class=" text-muted ml-1">STMIK Horizon Karawang</a></span>
+                        </div>
+                    </footer>
                 </div>
-
-
-
-                <!-- partial -->
             </div>
-            <!-- main-panel ends -->
         </div>
-        <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     <script src="../template/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

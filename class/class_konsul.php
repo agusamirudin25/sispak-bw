@@ -118,18 +118,7 @@ Swal.fire({
         }
     }
 
- //Tampil Hitung Gejala Pada Halaman Admin
- public function Tampilcard($total){
-    $query="SELECT COUNT(*) AS total FROM $total";
-    $card = $this->db->prepare($query);
-    $card->execute();
-
-while($row=$card->fetch(PDO::FETCH_ASSOC)){
-    $count=$row['total'];
-    return $count;
-}
-}
-    
+  
     //Tampil Pakar
     public function Tampilpakar($query){
         $query = $this->db->prepare($query);
@@ -137,9 +126,10 @@ while($row=$card->fetch(PDO::FETCH_ASSOC)){
 
         while($row = $query->fetch(PDO::FETCH_ASSOC)){
 ?>
+
 <a href="../view/pakarkonsul.php?id=<?php echo $row['username'] ?>">
     <li class="clearfix">
-        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+        <img src="" style="margin-left:-10px;">
         <div class="about">
             <div class="name"><?php echo $row['nama']; ?></div>
         </div>

@@ -104,30 +104,26 @@ if (isset($_SESSION['status']) != 'login') {
                                     </center>
                                     <?php
                                     require_once '../class/koneksi.php';
-                                    $query = "SELECT * FROM tb_penyakit ORDER by kode_penyakit desc";
+                                    $query = "SELECT * FROM tb_penyakit WHERE verifikasi IS NOT NULL ORDER by kode_penyakit desc";
                                     $penyakit = $con->prepare($query);
                                     $penyakit->execute(); ?>
-                                    <div class="row">
+                                     <div class="row">
                                         <?php while ($row = $penyakit->fetch(PDO::FETCH_ASSOC)) : ?>
-                                        <div class="col-md-6">
-                                            <div class="card" style="width: 50rem;">
+                                        <div class="col-md-12">
+                                            <div class="card">
                                                 <div class="card-body">
                                                     <h5 class="card-title"><?= $row['nama_penyakit'] ?></h5>
-                                                    <div class="ignielSpoiler">
-                                                        <div class="tombol" tabindex="0"></div>
-                                                        <div class="isi">
-
-                                                            <p class="card-text"
-                                                                style="text-align: justify; font-size:20px">
-                                                                <?= $row['keterangan_penyakit'] ?>
-                                                                <!-- show foto -->
-                                                                <?php if ($row['foto'] != null) : ?>
-                                                                <img src="../foto/<?= $row['foto'] ?>"
-                                                                    alt="<?= $row['nama_penyakit'] ?>"
-                                                                    style="width: 100%;">
-                                                                <?php endif; ?>
-                                                            </p>
-                                                        </div>
+                                                    <div class="card-body">
+                                                        <p class="card-text"
+                                                            style="text-align: justify; font-size:18px">
+                                                            <?= $row['keterangan_penyakit'] ?>
+                                                            <!-- show foto -->
+                                                        </p>
+                                                        <?php if ($row['foto'] != null) : ?>
+                                                        <img src="../foto/<?= $row['foto'] ?>"
+                                                            alt="<?= $row['nama_penyakit'] ?>"
+                                                            style="width: 50%;">
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,22 +135,28 @@ if (isset($_SESSION['status']) != 'login') {
                         </div>
                     </div>
                 </div>
-
-
-                <!-- partial:../../partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
+                            © 2022 : <a class="text-decoration-none fw-bolder" href="../view/profil.php"
+                                style="color:blue;">Alvin
+                                Supriyan
+                            </a>
+                        </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                            <a class=" text-muted ml-1">STMIK Horizon Karawang</a></span>
                     </div>
                 </footer>
-                <!-- partial -->
             </div>
-            <!-- main-panel ends -->
         </div>
-        <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     <script src="../template/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

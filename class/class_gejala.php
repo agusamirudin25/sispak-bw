@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'koneksi.php';
 
 //class gejala
@@ -41,7 +41,7 @@ Swal.fire({
 
 
     //Tampil Gejala
-    public function Tampilgejala ($query){
+    public function Tampilgejala ($query, $user = 'admin'){
         $query = $this->db->prepare($query);
         $query->execute();
    
@@ -52,14 +52,23 @@ Swal.fire({
 <tr>
     <td><?php echo "{$row['kode_gejala']}"; ?></td>
     <td><?php echo "{$row['nama_gejala']}"; ?></td>
+    <td><?php echo $row['nama'] == NULL ? '<span class="badge badge-warning text-white">Belum Verfiikasi</span>' : '<span class="badge badge-success text-white">Terverifikasi <br> ('. $row['nama'] .')</span>' ?></td>
 
 
     <td>
+        <?php if($user == 'admin') : ?>
         <center>
             <a href="tb_gejala_edit.php?id=<?php echo $row['kode_gejala'] ?>" class='btn btn-warning'><span
                     class='bi bi-pen'></span>Edit</a>
             <a class="hapus_gejala btn btn-danger" id="<?php echo $row['kode_gejala'] ?>">Hapus</a>
         </center>
+        <?php else : ?>
+            <?php if($row['nama'] == null) : ?>
+            <center>
+                <a class="verif_gejala btn btn-primary" id="<?php echo $row['kode_gejala'] ?>">Verifikasi</a>
+            </center>
+            <?php endif; ?>
+        <?php endif; ?>
     </td>
 </tr>
 
@@ -113,7 +122,16 @@ Swal.fire({
         $hapusgejala = $this->db->prepare("DELETE FROM tb_gejala where kode_gejala = '{$id}'");
         $hapusgejala->execute();
         return true;
-}
+    }
+
+    public function verifikasigejala($id)
+    {
+        $verifikasigejala = $this->db->prepare("UPDATE tb_gejala SET verifikasi=:username WHERE kode_gejala=:kode_gejala");
+        $verifikasigejala->bindParam(":username", $_SESSION['username']);
+        $verifikasigejala->bindParam(":kode_gejala", $id);
+        $verifikasigejala->execute();
+        return true;
+    }
 }
 
 $gejala = new gejala($con);
@@ -121,4 +139,9 @@ $gejala = new gejala($con);
     if(isset($_POST['id_hapus'])){
         $id_hapus = $_POST['id_hapus'];
         $gejala->hapusgejala($id_hapus);
+    }
+    // verifikasi gejala oleh pakar
+    if(isset($_POST['id_verifikasi'])){
+        $id_hapus = $_POST['id_verifikasi'];
+        $gejala->verifikasigejala($id_hapus);
     }

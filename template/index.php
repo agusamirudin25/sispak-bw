@@ -212,7 +212,6 @@ if(isset($_SESSION['status']) != 'login'){
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -237,21 +236,12 @@ if(isset($_SESSION['status']) != 'login'){
     </div>
     </div>
     </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
-    </div>
-    </div>
-    <!-- content-wrapper ends -->
-    <!-- partial:partials/_footer.html -->
-
-    <!-- partial -->
-    </div>
-    <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-
-    <!-- plugins:js -->
 
     <script>
     function prosesMenu() {

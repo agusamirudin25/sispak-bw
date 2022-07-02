@@ -256,6 +256,9 @@ if(isset($_SESSION['status']) != 'login'){
                                                         Nama Gejala
                                                     </th>
                                                     <th>
+                                                        Status
+                                                    </th>
+                                                    <th>
                                                         <center>
                                                             Opsi
                                                         </center>
@@ -265,79 +268,84 @@ if(isset($_SESSION['status']) != 'login'){
 
                                             <?php
                                                 require_once '../class/class_gejala.php';
-                                                $query = "SELECT * FROM tb_gejala";
+                                                $query = "SELECT tb_gejala.*, tb_login.nama FROM tb_gejala LEFT JOIN tb_login ON tb_gejala.verifikasi = tb_login.username";
                                                 $gejala->Tampilgejala($query);
                                             ?>
 
                                         </table>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <footer class="footer">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
-                                © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin
-                                    template</a>
-                                from
-                                BootstrapDash. All rights reserved.</span>
-                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted
-                                & made with <i class="ti-heart text-danger ml-1"></i></span>
-                        </div>
-                    </footer>
-
-
                 </div>
-                <!-- main-panel ends -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
+                            © 2022 : <a class="text-decoration-none fw-bolder" href="../view/profil.php"
+                                style="color:blue;">Alvin
+                                Supriyan
+                            </a>
+                        </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                            <a class=" text-muted ml-1">STMIK Horizon Karawang</a></span>
+                    </div>
+                </footer>
             </div>
-            <!-- page-body-wrapper ends -->
         </div>
-        <!-- container-scroller -->
-        <!-- plugins:js -->
-        <script src="../template/vendors/js/vendor.bundle.base.js"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
-        <!-- End plugin js for this page -->
-        <!-- inject:js -->
-        <script src="../template/js/delete.js"></script>
-        <script src="../template/js/off-canvas.js"></script>
-        <script src="../template/js/hoverable-collapse.js"></script>
-        <script src="../template/js/template.js"></script>
-        <script src="../template/js/settings.js"></script>
-        <script src="../template/js/todolist.js"></script>
-        <!-- endinject -->
-        <script>
-        function searchTable() {
-            var input;
-            var saring;
-            var status;
-            var tbody;
-            var tr;
-            var td;
-            var i;
-            var j;
-            input = document.getElementById("input");
-            saring = input.value.toUpperCase();
-            tbody = document.getElementsByTagName("tbody")[0];;
-            tr = tbody.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
-                        status = true;
-                    }
-                }
-                if (status) {
-                    tr[i].style.display = "";
-                    status = false;
-                } else {
-                    tr[i].style.display = "none";
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="../template/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../template/js/delete.js"></script>
+    <script src="../template/js/off-canvas.js"></script>
+    <script src="../template/js/hoverable-collapse.js"></script>
+    <script src="../template/js/template.js"></script>
+    <script src="../template/js/settings.js"></script>
+    <script src="../template/js/todolist.js"></script>
+    <!-- endinject -->
+    <script>
+    function searchTable() {
+        var input;
+        var saring;
+        var status;
+        var tbody;
+        var tr;
+        var td;
+        var i;
+        var j;
+        input = document.getElementById("input");
+        saring = input.value.toUpperCase();
+        tbody = document.getElementsByTagName("tbody")[0];;
+        tr = tbody.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
+                    status = true;
                 }
             }
+            if (status) {
+                tr[i].style.display = "";
+                status = false;
+            } else {
+                tr[i].style.display = "none";
+            }
         }
-        </script>
-        <script src="../template/js/logout.js"></script>
+    }
+    </script>
+    <script src="../template/js/logout.js"></script>
 </body>
 
 </html>

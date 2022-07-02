@@ -99,7 +99,7 @@ if (isset($_SESSION['status']) != 'login') {
 
                                     <div class="row justify-content-between">
                                         <div class="col-4">
-                                            <a class="btn btn-info" href="laporan_cetak.php">Cetak</a>
+                                            <a class="btn btn-info" href="laporan_cetak.php" target="blank">Cetak</a>
                                         </div>
                                         <div class="col-4">
                                             <input class="form-control" placeholder="Cari" type='text' id='input'
@@ -124,77 +124,83 @@ if (isset($_SESSION['status']) != 'login') {
                                             ?>
 
                                         </table>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- partial -->
-                    <!-- content-wrapper ends -->
-                    <!-- partial:../../partials/_footer.html -->
-                    <footer class="footer">
-                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
 
-                        </div>
-                    </footer>
-                    <!-- partial -->
                 </div>
-                <!-- main-panel ends -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright
+                            © 2022 : <a class="text-decoration-none fw-bolder" href="../view/profil.php"
+                                style="color:blue;">Alvin
+                                Supriyan
+                            </a>
+                        </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">
+                            <a class=" text-muted ml-1">STMIK Horizon Karawang</a></span>
+                    </div>
+                </footer>
             </div>
-            <!-- page-body-wrapper ends -->
         </div>
-        <!-- container-scroller -->
-        <!-- plugins:js -->
-        <script src="../template/vendors/js/vendor.bundle.base.js"></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
-        <!-- End plugin js for this page -->
-        <!-- inject:js -->
-        <script src="../template/js/gmail.js"></script>
-        <script src="../template/js/deletepengetahuan.js"></script>
-        <script src="../template/js/off-canvas.js"></script>
-        <script src="../template/js/hoverable-collapse.js"></script>
-        <script src="../template/js/template.js"></script>
-        <script src="../template/js/settings.js"></script>
-        <script src="../template/js/todolist.js"></script>
-        <script src="../template/vendors/select2/select2.min.js"></script>
-        <!-- endinject -->
-        <script>
-        function searchTable() {
-            var input;
-            var saring;
-            var status;
-            var tbody;
-            var tr;
-            var td;
-            var i;
-            var j;
-            input = document.getElementById("input");
-            saring = input.value.toUpperCase();
-            tbody = document.getElementsByTagName("tbody")[0];;
-            tr = tbody.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
-                        status = true;
-                    }
-                }
-                if (status) {
-                    tr[i].style.display = "";
-                    status = false;
-                } else {
-                    tr[i].style.display = "none";
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="../template/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../template/js/gmail.js"></script>
+    <script src="../template/js/deletepengetahuan.js"></script>
+    <script src="../template/js/off-canvas.js"></script>
+    <script src="../template/js/hoverable-collapse.js"></script>
+    <script src="../template/js/template.js"></script>
+    <script src="../template/js/settings.js"></script>
+    <script src="../template/js/todolist.js"></script>
+    <script src="../template/vendors/select2/select2.min.js"></script>
+    <!-- endinject -->
+    <script>
+    function searchTable() {
+        var input;
+        var saring;
+        var status;
+        var tbody;
+        var tr;
+        var td;
+        var i;
+        var j;
+        input = document.getElementById("input");
+        saring = input.value.toUpperCase();
+        tbody = document.getElementsByTagName("tbody")[0];;
+        tr = tbody.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(saring) > -1) {
+                    status = true;
                 }
             }
+            if (status) {
+                tr[i].style.display = "";
+                status = false;
+            } else {
+                tr[i].style.display = "none";
+            }
         }
-        if ($(".js-example-basic-single").length) {
-            $(".js-example-basic-single").select2();
-        }
-        </script>
-        <script src="../template/js/logout.js"></script>
+    }
+    if ($(".js-example-basic-single").length) {
+        $(".js-example-basic-single").select2();
+    }
+    </script>
+    <script src="../template/js/logout.js"></script>
 </body>
 
 </html>

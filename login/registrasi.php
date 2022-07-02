@@ -122,9 +122,9 @@ if (isset($_POST['simpan'])){
         </div>
     </div>
     <footer class="text-center text-lg-start "
-        style=" width: 100%; height: 50px; padding-left: 10px; line-height: 50px;position: absolute;bottom: 0px;">
+        style=" width: 100%; height: 50px; padding-left: 10px; line-height: 50px;position: absolute;bottom: 0px;color:white;">
         © 2022 Copyright:
-        <a class="text-reset fw-bold" href="../view/profil.php" style="color:black;">Alvin Supriyan</a>
+        <a class="text-reset fw-bold" href="../view/profil.php" style="color:white;">Alvin Supriyan</a>
     </footer>
 
     <script type="text/javascript">

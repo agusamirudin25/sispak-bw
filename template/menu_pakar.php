@@ -7,15 +7,31 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../view/basis_pengetahuan.php">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
+                <span class="menu-title">Verifikasi Data</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="../view/tb_gejala_pakar.php">Data Gejala</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="../view/tb_penyakit_pakar.php">Data Penyakit</a></li>
+
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="../view/basis_pengetahuan.php">
+                <i class="ti-book menu-icon"></i>
                 <span class="menu-title">Basis Pengetahuan</span>
             </a>
 
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../view/pakarkonsul.php">
-                <i class="icon-grid-2  menu-icon"></i>
+                <i class="ti-comment-alt  menu-icon"></i>
                 <span class="menu-title">Konsultasi</span>
             </a>
         </li>

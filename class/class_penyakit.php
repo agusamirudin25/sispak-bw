@@ -1,5 +1,4 @@
 <?php
-
 require_once 'koneksi.php';
 
 //class penyakit
@@ -15,21 +14,10 @@ class penyakit extends koneksi
             $ext = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
             $target_file = $target_dir . basename($nama_penyakit . "." . $ext);
           
-            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file);
                 echo "The file " . basename($_FILES["foto"]["name"]) . " has been uploaded.";
                 $foto = basename($nama_penyakit . "." . $ext);
-            } else {
-                echo "
-                <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Gagal upload foto!',
-                })
-                </script>
-                ";
-                return false;
-            }
+            
             $insertpenyakit = $this->db->prepare("INSERT INTO tb_penyakit(kode_penyakit,nama_penyakit,solusi, foto, keterangan_penyakit, penyebab) VALUES(:kode_penyakit,:nama_penyakit,:solusi, :foto, :keterangan_penyakit, :penyebab)");
 
             $insertpenyakit->bindParam(":kode_penyakit", $kode_penyakit);
@@ -61,7 +49,7 @@ Swal.fire({
     }
 
     //Tampil Penyakit
-    public function Tampilpenyakit($query)
+    public function Tampilpenyakit($query, $user = 'admin')
     {
         $query = $this->db->prepare($query);
         $query->execute();
@@ -85,12 +73,22 @@ Swal.fire({
     <td>
         <img src="../foto/<?= $row['foto']?>" alt="" style="width: 100px; border-radius: 0; height:auto">
     </td>
+    <td><?php echo $row['nama'] == NULL ? '<span class="badge badge-warning text-white">Belum Verfiikasi</span>' : '<span class="badge badge-success text-white">Terverifikasi <br> ('. $row['nama'] .')</span>' ?></td>
+
     <td>
+        <?php if($user == 'admin') : ?>
         <center>
             <a href="../view/tb_penyakit_edit.php?id=<?php echo $row['kode_penyakit'] ?>" class='btn btn-warning'><span
                     class='bi bi-pen'></span>Edit</a>
             <a class="hapus_penyakit btn btn-danger" id="<?php echo $row['kode_penyakit'] ?>">Hapus</a>
         </center>
+        <?php else : ?>
+            <?php if($row['nama'] == null) : ?>
+            <center>
+                <a class="verif_penyakit btn btn-primary" id="<?php echo $row['kode_penyakit'] ?>">Verifikasi</a>
+            </center>
+            <?php endif; ?>
+        <?php endif; ?>
     </td>
 </tr>
 
@@ -150,27 +148,20 @@ Swal.fire({
         }
     }
 
-
-    //Tampil Hitung Penyakit Pada Halaman Admin
-    public function tampilkartu($total)
-    
-    {
-        $query = "SELECT COUNT(*) AS total FROM $total";
-        $card = $this->db->prepare($query);
-        $card->execute();
-
-        while ($row = $card->fetch(PDO::FETCH_ASSOC)) {
-            $count = $row['total'];
-            return $count;
-        }
-    }
-
-
     //Hapus Penyakit
     public function hapuspenyakit($id)
     {
         $hapuspenyakit = $this->db->prepare("DELETE FROM tb_penyakit where kode_penyakit='$id'");
         $hapuspenyakit->execute();
+        return true;
+    }
+    public function verifikasipenyakit($id)
+    {
+        session_start();
+        $verifikasipenyakit = $this->db->prepare("UPDATE tb_penyakit SET verifikasi=:username WHERE kode_penyakit=:kode_penyakit");
+        $verifikasipenyakit->bindParam(":username", $_SESSION['username']);
+        $verifikasipenyakit->bindParam(":kode_penyakit", $id);
+        $verifikasipenyakit->execute();
         return true;
     }
 }
@@ -180,4 +171,9 @@ $penyakit = new penyakit($con);
 if (isset($_POST['id_hapus_penyakit'])) {
     $id_hapus_penyakit = $_POST['id_hapus_penyakit'];
     $penyakit->hapuspenyakit($id_hapus_penyakit);
+}
+// verifikasi penyakit oleh pakar
+if(isset($_POST['id_verifikasi'])){
+    $id_hapus = $_POST['id_verifikasi'];
+    $penyakit->verifikasipenyakit($id_hapus);
 }

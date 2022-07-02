@@ -8,7 +8,7 @@ class diagnosis extends koneksi
 
     public function tampilgejala($kode_penyakit)
     {
-        $query = "SELECT tb_pengetahuan.*, tb_gejala.kode_gejala, tb_gejala.nama_gejala FROM tb_pengetahuan JOIN tb_gejala ON tb_pengetahuan.kode_gejala = tb_gejala.kode_gejala WHERE kode_penyakit = '$kode_penyakit'";
+        $query = "SELECT tb_pengetahuan.*, tb_gejala.kode_gejala, tb_gejala.nama_gejala FROM tb_pengetahuan JOIN tb_gejala ON tb_pengetahuan.kode_gejala = tb_gejala.kode_gejala WHERE kode_penyakit = '$kode_penyakit' AND tb_gejala.verifikasi IS NOT NULL";
         $result = $this->db->prepare($query);
         $result->execute();
         $tujuan = isset($_SESSION['username']) ? 'diagnosis_hasil.php' : 'diagnosis_hasil_masyarakat.php';
@@ -29,7 +29,7 @@ class diagnosis extends koneksi
                                 ?>
                         <div class="col-md-12">
                             <div class="form-group mb-0">
-                                <div class="form-check form-check-success">
+                                <div class="form-check form-check-primary">
                                     <label class="form-check-label">
                                         <input type="checkbox" name="gejala[]" value="<?= $row['kode_gejala'] ?>"
                                             class="form-check-input">
@@ -79,7 +79,7 @@ class diagnosis extends koneksi
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Hasil Diagnosa</h3>
-                <a href="../view/diagnosis_cetak.php" class="btn btn-primary" id="btn-cetak">Cetak</a>
+                <a href="../view/diagnosis_cetak.php" class="btn btn-primary" id="btn-cetak" target="blank">Cetak</a>
                 <!-- <button class="btn btn-primary" id="btn-cetak" onclick="cetakHasil()">Cetak</button> -->
             </div>
             <div class="card-body">
@@ -142,7 +142,7 @@ class diagnosis extends koneksi
 
     public function tampilPenyakit()
     {
-        $query = "SELECT * FROM tb_penyakit";
+        $query = "SELECT * FROM tb_penyakit WHERE verifikasi IS NOT NULL";
         $penyakit = $this->db->prepare($query);
         $penyakit->execute();
         $dataPenyakit = $penyakit->fetchAll(PDO::FETCH_ASSOC);
@@ -192,6 +192,13 @@ class diagnosis extends koneksi
         $query_penyakit = "SELECT * FROM tb_penyakit WHERE kode_penyakit = '$penyakit'";
         $pdf = new \FPDF();
         $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 18);
+        $pdf->Cell(0,5, 'KLINIK PRATAMA BUNDA RAHAYU', 0, 1, 'C',false);
+        $pdf->SetFont('Arial', 'B', 7);
+        $pdf->Cell(0,5, 'Jalan Raya Rawa Gebang Nomor 47, Jatibaru, Kecamatan Cikarang Timur, Kabupaten Bekasi, Jawa Barat 17530', 0, 1, 'C',false);
+        $pdf->Ln(8);
+        $pdf->Cell(190,0.6,'','0','1','C',true);
+        $pdf->Ln(5);
         $pdf->SetFont('Arial', 'B', 16);
         $pdf->Cell(200, 10, 'HASIL DIAGNOSA', 0, 1, 'C');
 
@@ -199,29 +206,30 @@ class diagnosis extends koneksi
         $pdf->SetFont('Times', '', 12);
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->SetFont('Times', 'B', 12);
-        $pdf->Cell(45, 10, 'Gejala yang dipilih :', 0, 1, 'L');
+        $pdf->Cell(45, 5, 'Gejala yang dipilih :', 0, 1, 'L');
         $result_gejala = $this->db->prepare($query_gejala);
         $result_gejala->execute();
         $gejala = $result_gejala->fetchAll(PDO::FETCH_ASSOC);
         foreach ($gejala as $key => $row) {
             $pdf->SetFont('Times', '', 12);
-            $pdf->Cell(170, 10, ($key + 1) . ". {$row['nama_gejala']}", 0, 1, 'L');
+            $pdf->Cell(170, 5, ($key + 1) . ". {$row['nama_gejala']}", 0, 1, 'L');
         }
 
         $pdf->Cell(10, 5, '', 0, 1);
         $pdf->SetFont('Times', 'B', 12);
-        $pdf->Cell(45, 10, 'Penyakit :', 0, 1, 'L');
+        $pdf->Cell(45, 5, 'Penyakit :', 0, 1, 'L');
         $result_penyakit = $this->db->prepare($query_penyakit);
         $result_penyakit->execute();
         $penyakit = $result_penyakit->fetch(PDO::FETCH_ASSOC);
         $pdf->SetFont('Times', '', 12);
-        $pdf->Cell(170, 10, "Kode Penyakit : {$penyakit['kode_penyakit']}", 0, 1, 'L');
-        $pdf->Cell(170, 10, "Nama Penyakit : {$penyakit['nama_penyakit']}", 0, 1, 'L');
-        $pdf->MultiCell(180, 10, "{$penyakit['keterangan_penyakit']}", 0);
-        $pdf->Cell(180, 10, "Solusi :", 0, 1, 'L');
-        $pdf->MultiCell(180, 10, "{$penyakit['solusi']}", 0);
-        $pdf->Cell(180, 10, "Penyebab :", 0, 1, 'L');
-        $pdf->MultiCell(180, 10, "{$penyakit['penyebab']}", 0);
+        $pdf->Cell(170, 5, "Kode Penyakit : {$penyakit['kode_penyakit']}", 0, 1, 'L');
+        $pdf->Cell(170, 5, "Nama Penyakit : {$penyakit['nama_penyakit']}", 0, 1, 'L');
+        $pdf->MultiCell(180, 5, "{$penyakit['keterangan_penyakit']}", 0);
+        
+        $pdf->Cell(180, 15, "Solusi :", 0, 1, 'L');
+        $pdf->MultiCell(180, 5, "{$penyakit['solusi']}", 0);
+        $pdf->Cell(180, 5, "Penyebab :", 0, 1, 'L');
+        $pdf->MultiCell(180, 5, "{$penyakit['penyebab']}", 0);
 
         $pdf->Output();
     }

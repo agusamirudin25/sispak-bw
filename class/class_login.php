@@ -23,55 +23,55 @@ class login extends koneksi
 
                 if ($_SESSION['hak_akses'] == 'admin') {
 ?>
-                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    <script>
-                        Swal.fire({
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
 
-                            icon: 'success',
-                            title: 'Login Berhasil',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then((result) => {
-                            location.href = "../template/index.php";
-                        });
-                    </script>
-                <?php
+    icon: 'success',
+    title: 'Login Berhasil',
+    showConfirmButton: false,
+    timer: 1500
+}).then((result) => {
+    location.href = "../template/index.php";
+});
+</script>
+<?php
                 exit;
 
                 }
 
                 if ($_SESSION['hak_akses'] == 'pakar') {
                 ?>
-                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    <script>
-                        Swal.fire({
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
 
-                            icon: 'success',
-                            title: 'Login Berhasil',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then((result) => {
-                            location.href = "../template/indexpakar.php";
-                        });
-                    </script>
-                <?php
+    icon: 'success',
+    title: 'Login Berhasil',
+    showConfirmButton: false,
+    timer: 1500
+}).then((result) => {
+    location.href = "../template/indexpakar.php";
+});
+</script>
+<?php
                 exit;
                 }
 
                 if ($_SESSION['hak_akses'] == 'user') {
                 ?>
-                    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    <script>
-                        Swal.fire({
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
 
-                            icon: 'success',
-                            title: 'Login Berhasil',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then((result) => {
-                            location.href = "../template/indexuser.php";
-                        });
-                    </script>
+    icon: 'success',
+    title: 'Login Berhasil',
+    showConfirmButton: false,
+    timer: 1500
+}).then((result) => {
+    location.href = "../template/indexuser.php";
+});
+</script>
 <?php
                 exit;
                 }

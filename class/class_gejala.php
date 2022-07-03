@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once 'koneksi.php';
 
 //class gejala
@@ -126,6 +126,7 @@ Swal.fire({
 
     public function verifikasigejala($id)
     {
+        session_start();
         $verifikasigejala = $this->db->prepare("UPDATE tb_gejala SET verifikasi=:username WHERE kode_gejala=:kode_gejala");
         $verifikasigejala->bindParam(":username", $_SESSION['username']);
         $verifikasigejala->bindParam(":kode_gejala", $id);
